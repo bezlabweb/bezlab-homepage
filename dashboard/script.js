@@ -68,6 +68,8 @@
 
   var colorPrimary = cssVar('--color-primary');
   var colorRust = cssVar('--color-rust');
+  var colorPrimarySoft = 'rgba(14,95,163,0.9)';
+  var colorRustSoft = 'rgba(180,83,9,0.9)';
   var colorBorder = cssVar('--color-border');
   var colorText = cssVar('--color-text');
   var colorSurface = cssVar('--color-surface');
@@ -94,7 +96,7 @@
       datasets.push({
         label: '주거용 30년+ 비율',
         data: list.map(function (d) { return d.res_ratio; }),
-        backgroundColor: colorPrimary,
+        backgroundColor: colorPrimarySoft,
         borderRadius: 4,
         borderSkipped: false,
         maxBarThickness: 26
@@ -104,7 +106,7 @@
       datasets.push({
         label: '상업용 30년+ 비율',
         data: list.map(function (d) { return d.com_ratio; }),
-        backgroundColor: colorRust,
+        backgroundColor: colorRustSoft,
         borderRadius: 4,
         borderSkipped: false,
         maxBarThickness: 26
@@ -161,10 +163,10 @@
     var el = document.getElementById('mainLegend');
     var items = [];
     if (currentMode === 'both' || currentMode === 'residential') {
-      items.push('<span class="legend-row__item"><span class="legend-row__swatch" style="background:' + colorPrimary + '"></span>주거용 30년 이상 비율</span>');
+      items.push('<span class="legend-row__item"><span class="legend-row__swatch" style="background:' + colorPrimarySoft + '"></span>주거용 30년 이상 비율</span>');
     }
     if (currentMode === 'both' || currentMode === 'commercial') {
-      items.push('<span class="legend-row__item"><span class="legend-row__swatch" style="background:' + colorRust + '"></span>상업용 30년 이상 비율</span>');
+      items.push('<span class="legend-row__item"><span class="legend-row__swatch" style="background:' + colorRustSoft + '"></span>상업용 30년 이상 비율</span>');
     }
     el.innerHTML = items.join('');
   }
@@ -257,14 +259,14 @@
         {
           label: '수도권',
           data: [r.capital.total, r.capital.residential, r.capital.commercial],
-          backgroundColor: colorPrimary,
+          backgroundColor: colorPrimarySoft,
           borderRadius: 4,
           maxBarThickness: 40
         },
         {
           label: '지방',
           data: [r.non_capital.total, r.non_capital.residential, r.non_capital.commercial],
-          backgroundColor: colorRust,
+          backgroundColor: colorRustSoft,
           borderRadius: 4,
           maxBarThickness: 40
         }

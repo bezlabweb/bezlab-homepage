@@ -198,8 +198,8 @@ table { border-collapse: collapse; width: 100%; }
 .bar-cell { display: inline-flex; align-items: center; gap: 8px; min-width: 130px; }
 .bar-cell__track { flex: 1; height: 6px; background: var(--muted); border-radius: var(--radius-full); overflow: hidden; }
 .bar-cell__fill { display: block; height: 100%; border-radius: var(--radius-full); }
-.bar-cell__fill--res { background: var(--primary); }
-.bar-cell__fill--com { background: #d97706; }
+.bar-cell__fill--res { background: rgba(14,95,163,0.9); }
+.bar-cell__fill--com { background: rgba(180,83,9,0.9); }
 .bar-cell__num { font-weight: 700; font-variant-numeric: tabular-nums; width: 44px; text-align: right; color: var(--foreground); }
 
 /* ── SUMMARY ── */
