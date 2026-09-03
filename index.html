@@ -257,8 +257,9 @@ button { font-family: var(--font); cursor: pointer; border: none; }
 
 /* ── FOOTER ── */
 footer { background: var(--primary-hover); border-top: 1px solid rgba(255,255,255,0.1); padding: 28px 0; }
-.footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; font-size: 13px; color: rgba(255,255,255,0.55); }
-.footer-brand { font-weight: 800; font-size: 15px; letter-spacing: -0.03em; color: rgba(255,255,255,0.7); }
+.footer-inner { display: flex; justify-content: flex-start; align-items: center; flex-wrap: wrap; gap: 10px 18px; font-size: 13px; color: rgba(255,255,255,0.85); }
+.footer-brand { font-weight: 800; font-size: 15px; letter-spacing: -0.03em; color: #fff; display: inline-flex; align-items: center; gap: 8px; }
+.footer-brand img { width: 22px; height: 22px; flex-shrink: 0; }
 
 /* ── ANIMATE ── */
 .fade-up { opacity: 0; transform: translateY(18px); transition: opacity 0.5s ease, transform 0.5s ease; }
@@ -708,7 +709,7 @@ footer { background: var(--primary-hover); border-top: 1px solid rgba(255,255,25
 <footer>
   <div class="wrap">
     <div class="footer-inner">
-      <span class="footer-brand">BEZLab</span>
+      <span class="footer-brand"><img src="favicon.png" alt="">BEZLab</span>
       <span>베즈랩 주식회사 (BEZLab.Inc) · Blue Earth-Zeta Laboratory</span>
       <span>© 2026 BEZLab.Inc · 경기도 수원시 영통구 광교로 107, 창업보육동 110-9호</span>
     </div>

@@ -21,29 +21,56 @@
   border-bottom: 1px solid #e2e8f0;
   font-family: 'Archivo', system-ui, sans-serif;
 }
-.bez-nav-brand { font-weight: 800; font-size: 18px; letter-spacing: -0.04em; color: #0e5fa3; margin-right: auto; display: flex; flex-direction: column; line-height: 1; text-decoration: none; }
-.bez-nav-brand small { font-size: 9px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #bfdbfe; }
-.bez-nav-links { display: flex; gap: 4px; list-style: none; margin: 0; padding: 0; }
-.bez-nav-links a { font-size: 14px; font-weight: 500; color: #64748b; padding: 6px 12px; border-radius: 8px; transition: background 0.15s, color 0.15s; text-decoration: none; }
+.bez-nav-brand { font-weight: 800; font-size: 18px; letter-spacing: -0.04em; color: #0e5fa3; margin-right: auto; display: flex; align-items: center; gap: 8px; line-height: 1; text-decoration: none; }
+.bez-nav-brand img { width: 28px; height: 28px; flex-shrink: 0; }
+.bez-nav-brand small { font-size: 9px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #64748b; display: none; }
+.bez-nav-links { display: flex; gap: 2px; list-style: none; margin: 0; padding: 0; flex-shrink: 0; }
+.bez-nav-links a { font-size: 16px; font-weight: 700; color: #0f172a; padding: 6px 10px; border-radius: 8px; transition: background 0.15s, color 0.15s; text-decoration: none; white-space: nowrap; }
 .bez-nav-links a:hover { background: #f1f5f9; color: #0f172a; }
-.bez-nav-links a.active { color: #0e5fa3; background: #eff6ff; }
-.bez-btn-nav { background: #0e5fa3; color: #fff; font-size: 13px; font-weight: 600; padding: 8px 18px; border-radius: 8px; border: none; cursor: pointer; font-family: 'Archivo', system-ui, sans-serif; text-decoration: none; }
+.bez-btn-nav { background: #0e5fa3; color: #fff; font-size: 16px; font-weight: 700; padding: 8px 18px; border-radius: 8px; border: none; cursor: pointer; font-family: 'Archivo', system-ui, sans-serif; text-decoration: none; }
 .bez-btn-nav:hover { background: #0c4f8a; }
-@media (max-width: 640px) { .bez-nav-links { display: none; } }
+.bez-hamburger { display: none; flex-direction: column; justify-content: center; gap: 5px; width: 36px; height: 36px; padding: 6px; cursor: pointer; border-radius: 8px; background: none; border: none; margin-left: 4px; }
+.bez-hamburger span { display: block; width: 20px; height: 2px; background: #0f172a; border-radius: 2px; transition: 0.2s; }
+.bez-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.bez-hamburger.open span:nth-child(2) { opacity: 0; }
+.bez-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+@media (max-width: 640px) {
+  .bez-nav { gap: 12px; }  .bez-nav-links { display: none; }
+  .bez-nav-links.open { display: flex; flex-direction: column; position: absolute; top: 58px; left: 0; right: 0; background: #fff; border-bottom: 1px solid #e2e8f0; padding: 8px 20px 16px; gap: 2px; box-shadow: 0 8px 20px rgba(15,23,42,0.08); }
+  .bez-hamburger { display: flex; }
+  .bez-btn-nav { font-size: 13px; padding: 7px 14px; }
+}
+html, body { height: auto; }
+body { overflow: visible; }
+.app { display: block; height: auto; }
+.main { overflow-y: visible; }
+.bez-footer { background: #0c4f8a; border-top: 1px solid rgba(255,255,255,0.1); padding: 28px 32px; font-family: 'Archivo', system-ui, sans-serif; }
+.bez-footer-inner { display: flex; justify-content: flex-start; align-items: center; flex-wrap: wrap; gap: 10px 18px; font-size: 13px; color: rgba(255,255,255,0.85); max-width: 1280px; margin: 0 auto; }
+.bez-footer-brand { font-weight: 800; font-size: 15px; letter-spacing: -0.03em; color: #fff; display: inline-flex; align-items: center; gap: 8px; }
+.bez-footer-brand img { width: 22px; height: 22px; flex-shrink: 0; }
 </style>
 </head>
 <body>
 <nav class="bez-nav">
-  <a href="../index.html" class="bez-nav-brand">BEZLab<small>Blue Earth-Zeta Laboratory</small></a>
-  <ul class="bez-nav-links">
+  <a href="../index.html" class="bez-nav-brand"><img src="../favicon.png" alt="">BEZLab<small>Blue Earth-Zeta Laboratory</small></a>
+  <ul class="bez-nav-links" id="bez-nav-links">
     <li><a href="../index.html#process">서비스</a></li>
     <li><a href="../index.html#programs">지원사업</a></li>
-    <li><a href="#" class="active">노후건축물 현황</a></li>
+    <li><a href="../index.html#cases">사례</a></li>
     <li><a href="../index.html#team">팀</a></li>
     <li><a href="../index.html#contact">문의</a></li>
   </ul>
   <a href="../index.html#contact" class="bez-btn-nav">지원사업 찾기</a>
+  <button class="bez-hamburger" id="bez-hamburger" aria-label="메뉴">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+<script>
+document.getElementById('bez-hamburger').addEventListener('click', function () {
+  document.getElementById('bez-nav-links').classList.toggle('open');
+  this.classList.toggle('open');
+});
+</script>
 <div class="app">
 
   <!-- Header -->
@@ -225,6 +252,14 @@
     </footer>
 
   </main>
+
+  <footer class="bez-footer">
+    <div class="bez-footer-inner">
+      <span class="bez-footer-brand"><img src="../favicon.png" alt="">BEZLab</span>
+      <span>베즈랩 주식회사 (BEZLab.Inc) · Blue Earth-Zeta Laboratory</span>
+      <span>© 2026 BEZLab.Inc · 경기도 수원시 영통구 광교로 107, 창업보육동 110-9호</span>
+    </div>
+  </footer>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
