@@ -63,7 +63,8 @@ button { font-family: var(--font); cursor: pointer; border: none; }
   border-bottom: 1px solid var(--border);
   flex-wrap: nowrap;
 }
-.nav-brand { font-weight: 800; font-size: 18px; letter-spacing: -0.04em; color: var(--primary); margin-right: auto; display: flex; flex-direction: column; line-height: 1; }
+.nav-brand { font-weight: 800; font-size: 18px; letter-spacing: -0.04em; color: var(--primary); margin-right: auto; display: flex; align-items: center; gap: 8px; line-height: 1; }
+.nav-brand img { width: 28px; height: 28px; flex-shrink: 0; }
 .nav-brand small { font-size: 9px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted-fg); display: none; }
 .nav-links { display: flex; gap: 2px; list-style: none; margin: 0; padding: 0; flex-shrink: 0; }
 .nav-links a { font-size: 16px; font-weight: 700; color: var(--foreground); padding: 6px 10px; border-radius: var(--radius); transition: background 0.15s, color 0.15s; white-space: nowrap; }
@@ -107,9 +108,9 @@ button { font-family: var(--font); cursor: pointer; border: none; }
 .hero h1 .blue { color: var(--primary); }
 .hero-sub { font-size: 17px; line-height: 1.7; max-width: 50ch; margin: 32px 0 0; color: var(--muted-fg); }
 .hero-btns { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 32px; }
-.btn-primary { background: var(--primary); color: #fff; font-size: 14px; font-weight: 600; padding: 11px 24px; border-radius: var(--radius); transition: background 0.15s; box-shadow: var(--shadow-sm); }
+.btn-primary { background: var(--primary); color: #fff; font-size: 14px; font-weight: 600; padding: 11px 24px; border-radius: var(--radius); transition: background 0.15s; box-shadow: var(--shadow-sm); display: inline-flex; align-items: center; justify-content: center; line-height: 1.2; }
 .btn-primary:hover { background: var(--primary-hover); }
-.btn-ghost { background: transparent; color: var(--primary); font-size: 14px; font-weight: 600; padding: 10px 23px; border-radius: var(--radius); border: 1px solid var(--border); transition: background 0.15s, border-color 0.15s; }
+.btn-ghost { background: transparent; color: var(--primary); font-size: 14px; font-weight: 600; padding: 10px 23px; border-radius: var(--radius); border: 1px solid var(--border); transition: background 0.15s, border-color 0.15s; display: inline-flex; align-items: center; justify-content: center; line-height: 1.2; }
 .btn-ghost:hover { background: var(--muted); border-color: var(--input-border); }
 .hero-kpis { display: flex; gap: 0; flex-wrap: nowrap; margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--border); overflow: hidden; }
 .kpi { padding-right: clamp(16px, 3vw, 40px); min-width: 0; }
@@ -126,7 +127,7 @@ button { font-family: var(--font); cursor: pointer; border: none; }
 .quick-item:hover { background: rgba(255,255,255,0.12); color: #fff; }
 .quick-item-icon { width: 32px; height: 32px; background: rgba(255,255,255,0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
 .quick-item span { font-size: 16px; font-weight: 700; line-height: 1; }
-@media (max-width: 640px) { .quick-grid { grid-template-columns: repeat(2,1fr); } .quick-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.15); } .quick-item:nth-child(odd) { border-right: 1px solid rgba(255,255,255,0.15); } .quick-item:nth-child(3), .quick-item:nth-child(4) { border-bottom: none; } }
+@media (max-width: 640px) { .quick-grid { grid-template-columns: repeat(2,1fr); } .quick-item { padding: 14px 8px; gap: 8px; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.15); } .quick-item:nth-child(odd) { border-right: 1px solid rgba(255,255,255,0.15); } .quick-item:nth-child(3), .quick-item:nth-child(4) { border-bottom: none; } }
 
 /* ── SECTION COMMON ── */
 .sec-label { font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--primary); display: block; margin-bottom: 10px; }
@@ -292,7 +293,7 @@ footer { background: var(--primary-hover); border-top: 1px solid rgba(255,255,25
 
 <!-- NAV -->
 <nav class="nav">
-  <a href="#" class="nav-brand">BEZLab<small>Blue Earth-Zeta Laboratory</small></a>
+  <a href="#" class="nav-brand"><img src="favicon.png" alt="">BEZLab<small>Blue Earth-Zeta Laboratory</small></a>
   <ul class="nav-links" id="nav-links">
     <li><a href="#process">서비스</a></li>
     <li><a href="#programs">지원사업</a></li>
