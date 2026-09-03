@@ -62,9 +62,9 @@ button { font-family: var(--font); cursor: pointer; border: none; }
 .nav-brand { font-weight: 800; font-size: 18px; letter-spacing: -0.04em; color: var(--primary); margin-right: auto; display: flex; flex-direction: column; line-height: 1; }
 .nav-brand small { font-size: 9px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted-fg); }
 .nav-links { display: flex; gap: 4px; list-style: none; margin: 0; padding: 0; }
-.nav-links a { font-size: 14px; font-weight: 500; color: var(--muted-fg); padding: 6px 12px; border-radius: var(--radius); transition: background 0.15s, color 0.15s; }
+.nav-links a { font-size: 16px; font-weight: 700; color: var(--foreground); padding: 6px 12px; border-radius: var(--radius); transition: background 0.15s, color 0.15s; }
 .nav-links a:hover { background: var(--muted); color: var(--foreground); }
-.btn-nav { background: var(--primary); color: #fff; font-size: 13px; font-weight: 600; padding: 8px 18px; border-radius: var(--radius); transition: background 0.15s; box-shadow: var(--shadow-sm); }
+.btn-nav { background: var(--primary); color: #fff; font-size: 16px; font-weight: 700; padding: 8px 18px; border-radius: var(--radius); transition: background 0.15s; box-shadow: var(--shadow-sm); }
 .btn-nav:hover { background: var(--primary-hover); }
 @media (max-width: 640px) { .nav-links { display: none; } }
 
@@ -86,8 +86,8 @@ button { font-family: var(--font); cursor: pointer; border: none; }
 .hero-tag {
   display: inline-flex; align-items: center; gap: 8px;
   background: var(--accent-light); border: 1px solid var(--accent-mid);
-  padding: 5px 12px; font-size: 12px; font-weight: 600;
-  letter-spacing: 0.05em; color: var(--accent-dark);
+  padding: 7px 16px; font-size: 15px; font-weight: 700;
+  letter-spacing: 0.03em; color: var(--accent-dark);
   border-radius: 999px; margin-bottom: 28px;
 }
 .hero-tag::before { content: ""; width: 6px; height: 6px; background: var(--primary); border-radius: 50%; flex-shrink: 0; }
@@ -114,7 +114,7 @@ button { font-family: var(--font); cursor: pointer; border: none; }
 .quick-item:last-child { border-right: none; }
 .quick-item:hover { background: rgba(255,255,255,0.12); color: #fff; }
 .quick-item-icon { width: 32px; height: 32px; background: rgba(255,255,255,0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-.quick-item span { font-size: 13px; font-weight: 700; line-height: 1; }
+.quick-item span { font-size: 16px; font-weight: 700; line-height: 1; }
 @media (max-width: 640px) { .quick-grid { grid-template-columns: repeat(2,1fr); } }
 
 /* ── SECTION COMMON ── */
@@ -305,7 +305,7 @@ footer { background: var(--primary-hover); border-top: 1px solid rgba(255,255,25
     </h1>
     <p class="hero-sub">베즈랩은 건물 조건을 AI로 분석해 최적의 그린리모델링 정부지원사업을 매칭합니다. 신청 대행부터 시공사 연계까지 한 팀이 담당합니다.</p>
     <div class="hero-btns">
-      <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">지원사업 찾기</button>
+      <button class="btn-primary" style="background:var(--muted);color:var(--foreground);box-shadow:none;" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">지원사업 찾기</button>
       <button class="btn-ghost" onclick="document.getElementById('process').scrollIntoView({behavior:'smooth'})">서비스 알아보기</button>
       <a href="dashboard/index.html" class="btn-ghost">전국 노후 건축물 현황</a>
     </div>
