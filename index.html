@@ -2,12 +2,15 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="베즈랩은 그린리모델링 정부지원사업과 건물주를 AI로 정확하게 매칭합니다. 조건 진단부터 신청 대행, 시공사 연계까지 원스톱으로 지원합니다.">
 <meta property="og:title" content="베즈랩 (BEZLab) — 그린리모델링 정부지원사업 매칭">
 <meta property="og:description" content="AI 기반 그린리모델링 정부지원사업 매칭 서비스. 건물 조건 진단 → 사업 매칭 → 신청 대행 → 시공사 연계.">
 <meta property="og:url" content="https://www.bezlab.co.kr/">
-<title>베즈랩 (BEZLab) — 그린리모델링 정부지원사업 매칭</title>
+<title>베즈랩 주식회사</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -77,6 +80,7 @@ button { font-family: var(--font); cursor: pointer; border: none; }
 
 /* ── HERO ── */
 .hero { position: relative; overflow: hidden; padding: calc(5*var(--leading)) 0 calc(4*var(--leading)); background: var(--bg); }
+@media (max-width: 640px) { .hero { padding-top: 100px; padding-bottom: 80px; } }
 .hero-bg {
   position: absolute; inset: 0; pointer-events: none;
   background:
