@@ -1,0 +1,41 @@
+{
+  "meta": {
+    "title": "전국 17개 시도 노후 건축물 현황 대시보드",
+    "primary_year": "2023년 기준 (2024.4.16 발표)",
+    "primary_source": "국토교통부 「2023년 기준 건축물 현황 통계」, 첨부 붙임자료 5-1. 경과년수별(시도별)",
+    "primary_source_url": "https://www.molit.go.kr/USR/NEWS/dtl.jsp?lcmspage=86&id=95089658",
+    "latest_national_year": "2024년 기준 (2025.9.29 발표)",
+    "latest_national_source_url": "https://www.molit.go.kr/USR/NEWS/m_71/dtl.jsp?id=95091261"
+  },
+  "national_trend": [
+    {"year": 2018, "total": 36.5, "residential": null, "commercial": null},
+    {"year": 2022, "total": 41.0, "residential": 49.1, "commercial": 29.6},
+    {"year": 2023, "total": 42.6, "residential": 52.0, "commercial": 32.6},
+    {"year": 2024, "total": 44.4, "residential": 53.8, "commercial": 34.4}
+  ],
+  "national_2024_region": {
+    "capital": {"total": 37.7, "residential": 45.2, "commercial": 32.3},
+    "non_capital": {"total": 47.1, "residential": 56.9, "commercial": 35.4},
+    "nation": {"total": 44.4, "residential": 53.8, "commercial": 34.4}
+  },
+  "sido": [
+    {"name": "서울특별시", "short": "서울", "region_type": "capital", "res_total": 428325, "res_old": 246322, "res_ratio": 57.5, "com_total": 127876, "com_old": 76052, "com_ratio": 59.5},
+    {"name": "부산광역시", "short": "부산", "region_type": "non_capital", "res_total": 236696, "res_old": 162633, "res_ratio": 68.7, "com_total": 73754, "com_old": 34531, "com_ratio": 46.8},
+    {"name": "대구광역시", "short": "대구", "region_type": "non_capital", "res_total": 168976, "res_old": 110228, "res_ratio": 65.2, "com_total": 54117, "com_old": 25857, "com_ratio": 47.8},
+    {"name": "인천광역시", "short": "인천", "region_type": "capital", "res_total": 138739, "res_old": 65540, "res_ratio": 47.2, "com_total": 47743, "com_old": 16791, "com_ratio": 35.2},
+    {"name": "광주광역시", "short": "광주", "region_type": "non_capital", "res_total": 89137, "res_old": 46108, "res_ratio": 51.7, "com_total": 33625, "com_old": 11851, "com_ratio": 35.2},
+    {"name": "대전광역시", "short": "대전", "region_type": "non_capital", "res_total": 90228, "res_old": 56077, "res_ratio": 62.2, "com_total": 27220, "com_old": 12626, "com_ratio": 46.4},
+    {"name": "울산광역시", "short": "울산", "region_type": "non_capital", "res_total": 76205, "res_old": 36055, "res_ratio": 47.3, "com_total": 31203, "com_old": 8874, "com_ratio": 28.4},
+    {"name": "세종특별자치시", "short": "세종", "region_type": "non_capital", "res_total": 19428, "res_old": 8935, "res_ratio": 46.0, "com_total": 6833, "com_old": 1406, "com_ratio": 20.6},
+    {"name": "경기도", "short": "경기", "region_type": "capital", "res_total": 659642, "res_old": 219234, "res_ratio": 33.2, "com_total": 296848, "com_old": 52716, "com_ratio": 17.8},
+    {"name": "강원특별자치도", "short": "강원", "region_type": "non_capital", "res_total": 278327, "res_old": 90569, "res_ratio": 32.5, "com_total": 79287, "com_old": 22544, "com_ratio": 28.4},
+    {"name": "충청북도", "short": "충북", "region_type": "non_capital", "res_total": 247945, "res_old": 126797, "res_ratio": 51.1, "com_total": 66614, "com_old": 19594, "com_ratio": 29.4},
+    {"name": "충청남도", "short": "충남", "region_type": "non_capital", "res_total": 338288, "res_old": 168786, "res_ratio": 49.9, "com_total": 92704, "com_old": 24856, "com_ratio": 26.8},
+    {"name": "전북특별자치도", "short": "전북", "region_type": "non_capital", "res_total": 270777, "res_old": 156747, "res_ratio": 57.9, "com_total": 80990, "com_old": 27332, "com_ratio": 33.7},
+    {"name": "전라남도", "short": "전남", "region_type": "non_capital", "res_total": 430874, "res_old": 271800, "res_ratio": 63.1, "com_total": 99842, "com_old": 32270, "com_ratio": 32.3},
+    {"name": "경상북도", "short": "경북", "region_type": "non_capital", "res_total": 509429, "res_old": 303737, "res_ratio": 59.6, "com_total": 125321, "com_old": 40619, "com_ratio": 32.4},
+    {"name": "경상남도", "short": "경남", "region_type": "non_capital", "res_total": 478867, "res_old": 263718, "res_ratio": 55.1, "com_total": 115917, "com_old": 37826, "com_ratio": 32.6},
+    {"name": "제주특별자치도", "short": "제주", "region_type": "non_capital", "res_total": 114852, "res_old": 48383, "res_ratio": 42.1, "com_total": 32688, "com_old": 8376, "com_ratio": 25.6}
+  ],
+  "nation_total": {"res_total": 4576735, "res_old": 2381669, "res_ratio": 52.0, "com_total": 1392582, "com_old": 454121, "com_ratio": 32.6}
+}
