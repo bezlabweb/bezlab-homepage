@@ -121,13 +121,13 @@ button { font-family: var(--font); cursor: pointer; border: none; }
 /* ── QUICK STRIP ── */
 .quick-strip { background: var(--primary); border-top: none; border-bottom: none; }
 .quick-strip .wrap { padding-top: 0; padding-bottom: 0; }
-.quick-grid { display: grid; grid-template-columns: repeat(4,1fr); }
+.quick-grid { display: grid; grid-template-columns: repeat(3,1fr); }
 .quick-item { display: flex; flex-direction: row; align-items: center; justify-content: flex-start; gap: 10px; padding: 16px 20px; color: rgba(255,255,255,0.9); cursor: pointer; border-right: 1px solid rgba(255,255,255,0.15); transition: background 0.15s; text-decoration: none; white-space: nowrap; }
 .quick-item:last-child { border-right: none; }
 .quick-item:hover { background: rgba(255,255,255,0.12); color: #fff; }
 .quick-item-icon { width: 32px; height: 32px; background: rgba(255,255,255,0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
 .quick-item span { font-size: 16px; font-weight: 700; line-height: 1; }
-@media (max-width: 640px) { .quick-grid { grid-template-columns: repeat(2,1fr); } .quick-item { padding: 14px 8px; gap: 8px; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.15); } .quick-item:nth-child(odd) { border-right: 1px solid rgba(255,255,255,0.15); } .quick-item:nth-child(3), .quick-item:nth-child(4) { border-bottom: none; } }
+@media (max-width: 640px) { .quick-grid { grid-template-columns: 1fr; } .quick-item { padding: 14px 16px; gap: 10px; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.15); } .quick-item:last-child { border-bottom: none; } }
 
 /* ── SECTION COMMON ── */
 .sec-label { font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--primary); display: block; margin-bottom: 10px; }
@@ -147,6 +147,64 @@ button { font-family: var(--font); cursor: pointer; border: none; }
 .step-icon { width: 40px; height: 40px; background: var(--accent-light); border-radius: var(--radius); display: flex; align-items: center; justify-content: center; color: var(--primary); margin-bottom: 16px; }
 .step h3 { font-size: 16px; font-weight: 700; margin: 0 0 8px; letter-spacing: -0.01em; }
 .step p { font-size: 13.5px; line-height: 1.7; color: var(--muted-fg); margin: 0; }
+
+/* ── PORTFOLIO ── */
+.portfolio { padding: calc(5*var(--leading)) 0; border-top: 1px solid var(--border); }
+.pf-lead { font-size: 15px; line-height: 1.8; color: var(--muted-fg); max-width: 720px; margin: -24px 0 40px; word-break: keep-all; }
+.pf-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 16px; align-items: stretch; }
+.pf-card { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius-lg); padding: 28px 26px; box-shadow: var(--shadow-sm); display: flex; flex-direction: column; }
+.pf-card.lead { background: var(--accent-light); border-color: var(--accent-mid); }
+.pf-head { display: flex; align-items: center; gap: 10px; margin-bottom: 18px; }
+.pf-step { font-size: 11.5px; font-weight: 800; letter-spacing: 0.08em; color: var(--muted-fg); }
+.pf-badge { font-size: 11px; font-weight: 700; letter-spacing: 0.02em; padding: 3px 9px; border-radius: 999px; white-space: nowrap; }
+.pf-badge.now { background: var(--primary); color: #fff; }
+.pf-badge.soon { background: var(--muted); color: var(--foreground); border: 1px solid var(--border); }
+.pf-role { font-size: 12.5px; font-weight: 700; color: var(--primary); display: block; margin-bottom: 6px; }
+.pf-card h3 { font-size: 20px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.3; margin: 0 0 12px; color: var(--foreground); word-break: keep-all; }
+.pf-card.lead h3 { font-size: 24px; }
+.pf-card p { font-size: 13.5px; line-height: 1.75; color: var(--muted-fg); margin: 0; word-break: keep-all; }
+.pf-note { font-size: 12.5px; line-height: 1.7; color: var(--muted-fg); margin: 32px 0 0; padding-top: 18px; border-top: 1px solid var(--border); word-break: keep-all; }
+
+/* ── MARKET ── */
+.market { padding: calc(5*var(--leading)) 0; border-top: 1px solid var(--border); background: var(--muted); }
+.market-lead { font-size: 15px; line-height: 1.8; color: var(--muted-fg); max-width: 720px; margin: -24px 0 40px; }
+.market-top { display: grid; grid-template-columns: 340px 1fr; gap: 48px; align-items: center; margin-bottom: 40px; }
+.circles { position: relative; width: 320px; height: 320px; margin: 0 auto; }
+.circle { position: absolute; left: 50%; transform: translateX(-50%); border-radius: 50%; display: flex; align-items: flex-start; justify-content: center; }
+.circle span { font-size: 12px; font-weight: 800; letter-spacing: 0.1em; margin-top: 12px; }
+.c-tam { width: 320px; height: 320px; bottom: 0; background: #e8f1fa; border: 1px solid #c9ddf0; }
+.c-tam span { color: #4a7ea8; }
+.c-sam { width: 214px; height: 214px; bottom: 0; background: #c2dbf0; border: 1px solid #9dc3e2; }
+.c-sam span { color: #2b6394; }
+.c-som { width: 118px; height: 118px; bottom: 0; background: var(--primary); }
+.c-som span { color: rgba(255,255,255,0.9); }
+.market-legend { display: flex; flex-direction: column; gap: 0; }
+.legend-item { display: grid; grid-template-columns: 12px 1fr; gap: 16px; padding: 20px 0; border-bottom: 1px solid var(--border); }
+.legend-item:last-child { border-bottom: none; }
+.legend-dot { width: 12px; height: 12px; border-radius: 50%; margin-top: 7px; }
+.legend-kicker { font-size: 11.5px; font-weight: 700; letter-spacing: 0.08em; color: var(--muted-fg); display: block; margin-bottom: 4px; }
+.legend-value { font-size: clamp(22px, 2.4vw, 30px); font-weight: 800; letter-spacing: -0.02em; color: var(--foreground); line-height: 1.1; }
+.legend-note { font-size: 13px; line-height: 1.7; color: var(--muted-fg); margin: 6px 0 0; }
+.driver-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.driver { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius-lg); padding: 22px; box-shadow: var(--shadow-sm); display: flex; flex-direction: column; }
+.driver strong { font-size: 19px; font-weight: 800; letter-spacing: -0.02em; color: var(--primary); line-height: 1.25; margin-bottom: 10px; word-break: keep-all; }
+.driver p { font-size: 13px; line-height: 1.7; color: var(--muted-fg); margin: 0 0 14px; flex: 1; word-break: keep-all; }
+.driver cite { font-size: 11.5px; font-style: normal; color: var(--muted-fg); opacity: 0.75; border-top: 1px solid var(--border); padding-top: 10px; word-break: keep-all; }
+@media (max-width: 640px) { .driver-grid { grid-template-columns: 1fr; } .circles { width: 260px; height: 260px; } .c-tam { width: 260px; height: 260px; } .c-sam { width: 174px; height: 174px; } .c-som { width: 96px; height: 96px; } }
+
+/* ── DELIVERABLES ── */
+.deliverables { padding: calc(5*var(--leading)) 0; border-top: 1px solid var(--border); }
+.deliv-inner { display: grid; grid-template-columns: 1fr 1.05fr; gap: 44px; align-items: start; }
+.deliv-list { display: flex; flex-direction: column; gap: 10px; }
+.deliv-item { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius-lg); padding: 20px 22px; display: flex; gap: 14px; box-shadow: var(--shadow-sm); }
+.deliv-icon { width: 36px; height: 36px; flex-shrink: 0; border-radius: var(--radius); background: var(--accent-light); color: var(--primary); display: flex; align-items: center; justify-content: center; }
+.deliv-item h3 { font-size: 15px; font-weight: 700; letter-spacing: -0.01em; margin: 0 0 4px; color: var(--foreground); }
+.deliv-item p { font-size: 13.5px; line-height: 1.7; color: var(--muted-fg); margin: 0; }
+.report-label { font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted-fg); display: flex; align-items: center; gap: 8px; margin-bottom: 14px; }
+.report-shots { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.report-shot { margin: 0; }
+.report-shot img { display: block; width: 100%; background: #fff; border: 1px solid var(--card-border); border-radius: var(--radius); box-shadow: var(--shadow-sm); }
+.report-shot span { display: block; font-size: 12.5px; line-height: 1.6; color: var(--muted-fg); margin-top: 10px; }
 
 /* ── WHY ── */
 .why { padding: calc(5*var(--leading)) 0; background: var(--muted); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
@@ -176,21 +234,15 @@ button { font-family: var(--font); cursor: pointer; border: none; }
 .official-tag::before { content: ""; width: 6px; height: 6px; background: var(--primary); border-radius: 50%; }
 .gov-info-box { background: var(--accent-light); border: 1px solid var(--accent-mid); border-left: 4px solid var(--primary); padding: 18px 22px; margin-top: 28px; margin-bottom: 40px; border-radius: 0 var(--radius) var(--radius) 0; }
 .gov-info-box h4 { font-size: 13.5px; font-weight: 700; color: var(--accent-dark); margin: 0 0 6px; }
-.gov-info-box p { font-size: 13px; line-height: 1.7; color: var(--muted-fg); margin: 0; }
-
-/* ── CASES ── */
-.cases { padding: calc(5*var(--leading)) 0; background: var(--muted); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-.cases-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-.case-card { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius-lg); padding: 24px; box-shadow: var(--shadow-sm); }
-.case-loc { font-size: 11px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: var(--muted-fg); margin: 0 0 10px; display: block; }
-.case-card h3 { font-size: 17px; font-weight: 800; margin: 0 0 3px; }
-.case-card .sub { font-size: 12.5px; color: var(--muted-fg); margin: 0 0 18px; }
-.case-rows { display: flex; flex-direction: column; gap: 6px; }
-.case-row { display: flex; justify-content: space-between; align-items: center; padding: 9px 13px; background: var(--muted); border-radius: 6px; font-size: 13px; }
-.case-row .label { color: var(--muted-fg); }
-.case-row .val { font-weight: 700; }
-.case-row .val.big { color: var(--primary); }
-.case-quote { font-size: 13.5px; line-height: 1.7; color: var(--muted-fg); margin: 18px 0 0; padding-top: 18px; border-top: 1px solid var(--border); }
+.gov-info-box p { font-size: 13px; line-height: 1.7; color: var(--muted-fg); margin: 0; word-break: keep-all; }
+.gov-groups { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; margin-top: 16px; background: var(--accent-mid); border: 1px solid var(--accent-mid); }
+.gov-group { background: var(--card); padding: 16px 18px; }
+.gov-group h5 { font-size: 12.5px; font-weight: 800; letter-spacing: -0.01em; color: var(--accent-dark); margin: 0 0 10px; }
+.gov-group ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 5px; }
+.gov-group li { font-size: 12.5px; line-height: 1.55; color: var(--muted-fg); padding-left: 11px; position: relative; word-break: keep-all; }
+.gov-group li::before { content: ""; position: absolute; left: 0; top: 8px; width: 4px; height: 1px; background: var(--primary); }
+.gov-foot { font-size: 12.5px; line-height: 1.7; color: var(--muted-fg); margin: 14px 0 0; word-break: keep-all; }
+@media (max-width: 640px) { .gov-groups { grid-template-columns: 1fr; } }
 
 /* ── TECH ── */
 .tech { padding: calc(5*var(--leading)) 0; border-top: 1px solid var(--border); }
@@ -267,10 +319,13 @@ footer { background: var(--primary-hover); border-top: 1px solid rgba(255,255,25
 
 /* ── RESPONSIVE ── */
 @media (max-width: 900px) {
+  .deliv-inner { grid-template-columns: 1fr; gap: 32px; }
+  .market-top { grid-template-columns: 1fr; gap: 32px; }
+  .pf-grid { grid-template-columns: 1fr; }
+  .driver-grid { grid-template-columns: repeat(2, 1fr); }
   .steps { grid-template-columns: 1fr 1fr; }
   .why-grid { grid-template-columns: 1fr; }
   .program-grid { grid-template-columns: 1fr 1fr; }
-  .cases-grid { grid-template-columns: 1fr; }
   .tech-inner { grid-template-columns: 1fr; }
   .tech-visual { display: none; }
   .team-inner { grid-template-columns: 1fr; }
@@ -299,7 +354,6 @@ footer { background: var(--primary-hover); border-top: 1px solid rgba(255,255,25
     <li><a href="#process">서비스</a></li>
     <li><a href="#programs">정부지원사업</a></li>
     <li><a href="#team">팀</a></li>
-    <li><a href="#cases">사례</a></li>
     <li><a href="#contact">문의</a></li>
   </ul>
   <button class="btn-nav" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">지원사업 찾기</button>
@@ -325,12 +379,6 @@ footer { background: var(--primary-hover); border-top: 1px solid rgba(255,255,25
       <button class="btn-ghost" onclick="document.getElementById('process').scrollIntoView({behavior:'smooth'})">서비스 알아보기</button>
       <a href="dashboard/index.html" class="btn-ghost">전국 노후 건축물 현황</a>
     </div>
-    <div class="hero-kpis">
-      <div class="kpi"><strong>34+</strong><span>매칭 완료 건수</span></div>
-      <div class="kpi"><strong>9억+</strong><span>확보된 정부지원금</span></div>
-      <div class="kpi"><strong>98%</strong><span>신청 승인율</span></div>
-      <div class="kpi"><strong>2일</strong><span>평균 매칭 기간</span></div>
-    </div>
   </div>
 </section>
 
@@ -346,17 +394,77 @@ footer { background: var(--primary-hover); border-top: 1px solid rgba(255,255,25
         <div class="quick-item-icon"><i data-lucide="list" style="width:16px;height:16px;color:#fff;"></i></div>
         <span>지원사업 목록</span>
       </a>
-      <a class="quick-item" href="#cases">
-        <div class="quick-item-icon"><i data-lucide="bar-chart-2" style="width:16px;height:16px;color:#fff;"></i></div>
-        <span>도입 사례</span>
-      </a>
       <a class="quick-item" href="#contact">
         <div class="quick-item-icon"><i data-lucide="phone" style="width:16px;height:16px;color:#fff;"></i></div>
-        <span>무료 상담</span>
+        <span>상담 신청</span>
       </a>
     </div>
   </div>
 </div>
+
+<!-- MARKET -->
+<section class="market" id="market">
+  <div class="wrap">
+    <span class="sec-label">시장 규모</span>
+    <h2 class="sec-title">시장 규모와 성장 동력</h2>
+    <p class="market-lead">탄소중립 정책과 기후공시 의무화가 그린리모델링·기후리스크 평가 수요를 구조적으로 확대하고 있습니다.</p>
+    <div class="market-top">
+      <div class="circles">
+        <div class="circle c-tam"><span>TAM</span></div>
+        <div class="circle c-sam"><span>SAM</span></div>
+        <div class="circle c-som"><span>SOM</span></div>
+      </div>
+      <div class="market-legend">
+        <div class="legend-item">
+          <div class="legend-dot" style="background:#c9ddf0;"></div>
+          <div>
+            <span class="legend-kicker">TAM · 전체시장</span>
+            <div class="legend-value">63~103조원</div>
+            <p class="legend-note">연평균 · 2050 누적 1,706~2,781조원</p>
+          </div>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background:#9dc3e2;"></div>
+          <div>
+            <span class="legend-kicker">SAM · 유효시장</span>
+            <div class="legend-value">3조원+</div>
+            <p class="legend-note">진단·컨설팅·설계·엔지니어링 서비스</p>
+          </div>
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background:var(--primary);"></div>
+          <div>
+            <span class="legend-kicker">SOM · 목표시장</span>
+            <div class="legend-value">30억원</div>
+            <p class="legend-note">2029 매출목표 · SAM의 약 0.1%</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="driver-grid">
+      <div class="driver">
+        <strong>노후 건축물 44.4%</strong>
+        <p>전국 건축물 742만동 중 30년 이상 노후 건축물 비중 — 진단·개선 수요의 구조적 기반</p>
+        <cite>국토교통부, 2024년 말 기준</cite>
+      </div>
+      <div class="driver">
+        <strong>국고보조 1,688억원</strong>
+        <p>2026년 '공공건축물 그린리모델링 2.0' 318동 지원, 기후위기 적응기술 지원 신설</p>
+        <cite>국토교통부</cite>
+      </div>
+      <div class="driver">
+        <strong>KSSB 2028년 의무화</strong>
+        <p>자산 30조원 이상 상장사부터 기후공시 의무화, 2029년 10조원 이상, 2033년 코스피 전체 확대</p>
+        <cite>금융위원회 로드맵</cite>
+      </div>
+      <div class="driver">
+        <strong>유상할당 15%→50%</strong>
+        <p>제4차 배출권거래제 계획기간(2026~2035), 발전부문 유상할당 비율 단계적 확대</p>
+        <cite>제4차 배출권거래제 기본계획</cite>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- PROCESS -->
 <section class="process" id="process">
@@ -365,7 +473,7 @@ footer { background: var(--primary-hover); border-top: 1px solid rgba(255,255,25
     <h2 class="sec-title">진단부터 완공까지,<br>베즈랩이 함께합니다</h2>
     <div class="notice-box">
       <i data-lucide="info" style="width:18px;height:18px;"></i>
-      <div><strong>안내</strong> &nbsp;초기 상담 및 사업 매칭은 완전 무료입니다. 수수료는 지원금 승인 이후 성과 기반으로만 발생하며, 승인 전 어떠한 비용도 청구하지 않습니다.</div>
+      <div><strong>안내</strong> &nbsp;초기 상담에서 매칭 가능한 지원사업과 예상 지원금을 먼저 확인하실 수 있습니다. 비용이 발생하는 경우 사전에 안내드리며, 동의 없이 청구되는 금액은 없습니다.</div>
     </div>
     <div class="steps">
       <div class="step fade-up">
@@ -391,6 +499,59 @@ footer { background: var(--primary-hover); border-top: 1px solid rgba(255,255,25
         <div class="step-icon"><i data-lucide="hard-hat" style="width:22px;height:22px;"></i></div>
         <h3>시공·사후 관리</h3>
         <p>검증된 그린리모델링 시공사 네트워크를 연결합니다. 완공 후 에너지 성과 모니터링으로 지원 조건 이행을 보장합니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DELIVERABLES -->
+<section class="deliverables" id="deliverables">
+  <div class="wrap">
+    <span class="sec-label">산출물</span>
+    <h2 class="sec-title">상담 결과는<br>문서로 정리해 드립니다</h2>
+    <div class="deliv-inner">
+      <div class="deliv-list">
+        <div class="deliv-item">
+          <div class="deliv-icon"><i data-lucide="gauge" style="width:18px;height:18px;"></i></div>
+          <div>
+            <h3>에너지 진단서</h3>
+            <p>건물 현황과 개선 전·후 에너지 성능을 정량으로 비교합니다.</p>
+          </div>
+        </div>
+        <div class="deliv-item">
+          <div class="deliv-icon"><i data-lucide="list-checks" style="width:18px;height:18px;"></i></div>
+          <div>
+            <h3>지원사업 매칭 결과표</h3>
+            <p>건물 조건에 해당하는 사업과 신청 시기를 정리합니다.</p>
+          </div>
+        </div>
+        <div class="deliv-item">
+          <div class="deliv-icon"><i data-lucide="calculator" style="width:18px;height:18px;"></i></div>
+          <div>
+            <h3>예상 지원금 산정서</h3>
+            <p>사업별 지원 한도와 자기부담금을 추정합니다.</p>
+          </div>
+        </div>
+        <div class="deliv-item">
+          <div class="deliv-icon"><i data-lucide="file-check" style="width:18px;height:18px;"></i></div>
+          <div>
+            <h3>신청 서류 체크리스트</h3>
+            <p>제출 서류와 준비 순서를 단계별로 안내합니다.</p>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="report-label"><i data-lucide="file-text" style="width:14px;height:14px;"></i> 리포트 예시</div>
+        <div class="report-shots">
+          <figure class="report-shot">
+            <img src="assets/report-p1.png" alt="분석 리포트 1페이지 — 건물 개요 및 연간 주요 지표">
+            <span>건물 개요 및 연간 주요 지표</span>
+          </figure>
+          <figure class="report-shot">
+            <img src="assets/report-p2.png" alt="분석 리포트 2페이지 — 월별 상세 지표">
+            <span>월별 상세 지표</span>
+          </figure>
+        </div>
       </div>
     </div>
   </div>
@@ -441,7 +602,40 @@ footer { background: var(--primary-hover); border-top: 1px solid rgba(255,255,25
     <h2 class="sec-title">베즈랩이 매칭하는 주요 정부지원사업 <span class="official-tag">공식 연계 사업</span></h2>
     <div class="gov-info-box">
       <h4>📋 신청 자격 안내</h4>
-      <p>준공 후 15년 이상 경과한 건물이 주요 대상이나, 사업별로 기준이 다릅니다. 단독·공동주택, 근린생활시설, 업무시설, 공장, 의료시설 등 대부분의 용도가 해당됩니다. 무료 상담을 통해 정확한 조건을 확인하세요.</p>
+      <p>공공건축물 그린리모델링은 사용승인 후 10년 이상 경과한 건축물이 지원 대상입니다. 민간건축물 이자지원은 노후 연한 대신 에너지 성능 개선 비율을 기준으로 하며, 사업별로 조건이 다릅니다.</p>
+      <div class="gov-groups">
+        <div class="gov-group">
+          <h5>공공부문</h5>
+          <ul>
+            <li>지방자치단체·공공기관</li>
+            <li>교육청 및 학교시설</li>
+            <li>공공청사·도서관·보건소</li>
+            <li>어린이집·경로당</li>
+            <li>체육·복지시설</li>
+          </ul>
+        </div>
+        <div class="gov-group">
+          <h5>공동주택</h5>
+          <ul>
+            <li>노후 공동주택</li>
+            <li>리모델링 추진 단지</li>
+            <li>장기수선계획 대상 단지</li>
+            <li>관리사무소</li>
+            <li>입주자대표회의</li>
+          </ul>
+        </div>
+        <div class="gov-group">
+          <h5>민간부문</h5>
+          <ul>
+            <li>중소형 업무시설</li>
+            <li>공장 및 물류센터</li>
+            <li>병원 및 요양시설</li>
+            <li>호텔 및 숙박시설</li>
+            <li>상업·근린생활시설</li>
+          </ul>
+        </div>
+      </div>
+      <p class="gov-foot">해당 여부가 불확실하면 건물 정보를 남겨주세요. 조건을 확인해 안내드립니다.</p>
     </div>
     <div class="program-grid">
       <div class="program-card fade-up">
@@ -479,52 +673,6 @@ footer { background: var(--primary-hover); border-top: 1px solid rgba(255,255,25
         <h3>지역별 맞춤 매칭</h3>
         <p>인천·부산·대전·대구 등 전국 지자체 사업을 포함해 건물 조건에 맞는 전체 사업을 탐색합니다.</p>
         <span class="badge">전국 매칭</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CASES -->
-<section class="cases" id="cases">
-  <div class="wrap">
-    <span class="sec-label">도입 사례</span>
-    <h2 class="sec-title">실제로 지원금을 받은 건물들</h2>
-    <div class="cases-grid">
-      <div class="case-card fade-up">
-        <p class="case-loc">Case 01 · 경기도 수원시</p>
-        <h3>지상 5층 상가건물</h3>
-        <p class="sub">준공 1998년 · 연면적 1,240㎡</p>
-        <div class="case-rows">
-          <div class="case-row"><span class="label">매칭 사업</span><span class="val">국토부 이자지원 + 경기도 보조금</span></div>
-          <div class="case-row"><span class="label">총 지원금액</span><span class="val big">4,800만 원</span></div>
-          <div class="case-row"><span class="label">에너지 절감</span><span class="val">월 43% 절감</span></div>
-          <div class="case-row"><span class="label">매칭 기간</span><span class="val">2일</span></div>
-        </div>
-        <p class="case-quote">"단열 공사를 계획만 하다 3년이 지났는데, 베즈랩 덕분에 실제 지원을 받고 공사까지 마쳤습니다."</p>
-      </div>
-      <div class="case-card fade-up">
-        <p class="case-loc">Case 02 · 인천 남동구</p>
-        <h3>중소 제조업 공장</h3>
-        <p class="sub">준공 2003년 · 연면적 2,850㎡</p>
-        <div class="case-rows">
-          <div class="case-row"><span class="label">매칭 사업</span><span class="val">중기부 스마트에너지 지원</span></div>
-          <div class="case-row"><span class="label">총 지원금액</span><span class="val big">1억 1,200만 원</span></div>
-          <div class="case-row"><span class="label">에너지 절감</span><span class="val">월 38% 절감</span></div>
-          <div class="case-row"><span class="label">매칭 기간</span><span class="val">1일</span></div>
-        </div>
-        <p class="case-quote">"중소기업이라 어떤 지원을 받을 수 있는지 몰랐는데, 생각보다 훨씬 큰 금액을 받게 됐습니다."</p>
-      </div>
-      <div class="case-card fade-up">
-        <p class="case-loc">Case 03 · 서울 성북구</p>
-        <h3>근린생활시설 (의원)</h3>
-        <p class="sub">준공 1995년 · 연면적 680㎡</p>
-        <div class="case-rows">
-          <div class="case-row"><span class="label">매칭 사업</span><span class="val">국토부 이자지원 사업</span></div>
-          <div class="case-row"><span class="label">총 지원금액</span><span class="val big">2,400만 원</span></div>
-          <div class="case-row"><span class="label">에너지 절감</span><span class="val">월 51% 절감</span></div>
-          <div class="case-row"><span class="label">매칭 기간</span><span class="val">3일</span></div>
-        </div>
-        <p class="case-quote">"창호 교체 비용이 부담이었는데 이자 없이 공사하고 관리비까지 줄었습니다. 진작 할 걸 했어요."</p>
       </div>
     </div>
   </div>
@@ -571,6 +719,45 @@ footer { background: var(--primary-hover); border-top: 1px solid rgba(255,255,25
         </svg>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section class="portfolio" id="portfolio">
+  <div class="wrap">
+    <span class="sec-label">사업 구성</span>
+    <h2 class="sec-title">3대 사업축을 단계적으로 성장시킵니다</h2>
+    <p class="pf-lead">그린리모델링 정부지원사업 매칭을 주력으로, 건설엔지니어링과 기후리스크 평가 영역으로 전문서비스를 넓혀갑니다.</p>
+    <div class="pf-grid">
+      <div class="pf-card lead">
+        <div class="pf-head">
+          <span class="pf-step">STEP 1</span>
+          <span class="pf-badge now">현재 서비스</span>
+        </div>
+        <span class="pf-role">주력 사업</span>
+        <h3>그린리모델링 및<br>건물에너지 서비스</h3>
+        <p>지원정책 분석부터 현장진단, 에너지 성능평가, 경제성 검토, 실시설계·내역서 작성까지 하나의 프로세스로 수행합니다.</p>
+      </div>
+      <div class="pf-card">
+        <div class="pf-head">
+          <span class="pf-step">STEP 2</span>
+          <span class="pf-badge soon">추진 중</span>
+        </div>
+        <span class="pf-role">전문서비스 확장</span>
+        <h3>건설엔지니어링</h3>
+        <p>건설엔지니어링사업자 등록을 추진하고 있습니다. 등록 완료 후 공공·민간 건축물의 계획·설계·기술검토 분야로 서비스를 확대할 예정입니다.</p>
+      </div>
+      <div class="pf-card">
+        <div class="pf-head">
+          <span class="pf-step">STEP 3</span>
+          <span class="pf-badge soon">중장기</span>
+        </div>
+        <span class="pf-role">연구개발</span>
+        <h3>기후리스크<br>통합평가 플랫폼</h3>
+        <p>기후재해 노출도와 탄소가격 변동을 함께 평가하는 플랫폼을 공동기획하며, 국가 R&amp;D 과제 참여를 준비하고 있습니다.</p>
+      </div>
+    </div>
+    <p class="pf-note">STEP 2·3은 준비 단계의 사업으로, 현재 제공 중인 서비스는 STEP 1입니다.</p>
   </div>
 </section>
 
@@ -635,7 +822,7 @@ footer { background: var(--primary-hover); border-top: 1px solid rgba(255,255,25
       <div class="contact-copy">
         <span class="sec-label">고객문의</span>
         <h2 class="sec-title">도입 상담 및<br>매칭 문의를<br>환영합니다.</h2>
-        <p>건물 정보를 남겨주시면 2일 안에 전담 컨설턴트가 연락드립니다. 매칭 가능한 지원사업과 예상 지원금을 무료로 안내해 드립니다.</p>
+        <p>건물 정보를 남겨주시면 2일 안에 전담 컨설턴트가 연락드립니다. 매칭 가능한 지원사업과 예상 지원금을 안내해 드립니다.</p>
         <div class="contact-info">
           <div class="contact-row"><i data-lucide="mail" style="width:18px;height:18px;"></i><a href="mailto:dany234@daum.net">dany234@daum.net</a></div>
           <div class="contact-row"><i data-lucide="phone" style="width:18px;height:18px;"></i><a href="tel:01033407722">010-3340-7722</a></div>
@@ -701,7 +888,7 @@ footer { background: var(--primary-hover); border-top: 1px solid rgba(255,255,25
           <div>· 보유·이용 기간: 수집일로부터 1년 (지원사업 재안내 목적)</div>
           <div>· 동의를 거부하실 수 있으나, 이 경우 상담 신청이 제한됩니다.</div>
         </div>
-        <button type="submit" class="btn-submit">무료 매칭 상담 신청하기 →</button>
+        <button type="submit" class="btn-submit">상담 신청하기 →</button>
       </form>
     </div>
   </div>
@@ -716,11 +903,10 @@ footer { background: var(--primary-hover); border-top: 1px solid rgba(255,255,25
           <span>지원사업 조건,</span>
           <span>지금 바로 확인하세요.</span>
         </h2>
-        <p>Sustainable Tech Odyssey for Blue Earth — BEZLab</p>
+        <p>The Tech Odyssey for Blue Earth / 푸른 지구를 위한 기술의 여정</p>
       </div>
       <div class="cta-btns">
         <button class="btn-cta-white" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">지원사업 찾기</button>
-        <button class="btn-cta-outline" onclick="document.getElementById('cases').scrollIntoView({behavior:'smooth'})">도입 사례 보기</button>
       </div>
     </div>
   </div>
@@ -865,7 +1051,7 @@ function handleSubmit(e) {
     btn.style.background = '#22c55e';
     form.reset();
     setTimeout(function () {
-      btn.textContent = '무료 매칭 상담 신청하기 →';
+      btn.textContent = '상담 신청하기 →';
       btn.style.background = '';
       btn.disabled = false;
     }, 3000);
@@ -873,7 +1059,7 @@ function handleSubmit(e) {
     btn.textContent = '전송 실패 · 다시 시도해 주세요';
     btn.style.background = '#dc2626';
     setTimeout(function () {
-      btn.textContent = '무료 매칭 상담 신청하기 →';
+      btn.textContent = '상담 신청하기 →';
       btn.style.background = '';
       btn.disabled = false;
     }, 3000);
