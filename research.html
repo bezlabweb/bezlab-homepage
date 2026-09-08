@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="베즈랩이 조사·정리한 그린리모델링·에너지절감·주거복지 개선 지원사업 종합 비교 데이터베이스. 24개 사업의 지원대상·지원한도·필수 공사조건·접수현황.">
+<title>지원사업 조사 데이터베이스 — 베즈랩 주식회사</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<style>
+:root {
+  --bg: #ffffff;
+  --foreground: #0f172a;
+  --card: #ffffff;
+  --card-border: #e2e8f0;
+  --muted: #f1f5f9;
+  --muted-fg: #64748b;
+  --border: #e2e8f0;
+  --primary: #0e5fa3;
+  --primary-hover: #0c4f8a;
+  --accent-light: #eff6ff;
+  --accent-mid: #bfdbfe;
+  --accent-dark: #1e40af;
+  --radius: 8px;
+  --radius-lg: 12px;
+  --shadow-sm: 0 1px 2px 0 rgba(15,23,42,0.05);
+  --shadow-md: 0 4px 12px -2px rgba(15,23,42,0.08);
+  --font: 'Archivo', -apple-system, BlinkMacSystemFont, 'Pretendard', system-ui, sans-serif;
+  --max: 1240px;
+  --edge: clamp(20px, 5vw, 72px);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--font); background: var(--bg); color: var(--foreground); -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+a:hover { color: var(--primary); }
+img { display: block; max-width: 100%; }
+button { font-family: var(--font); cursor: pointer; border: none; }
+.wrap { max-width: var(--max); margin: 0 auto; padding: 0 var(--edge); }
+
+/* NAV */
+nav {
+  position: sticky; top: 0; z-index: 200;
+  display: flex; align-items: center; gap: 32px;
+  padding: 0 var(--edge); height: 58px;
+  background: rgba(255,255,255,0.95); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border); flex-wrap: nowrap;
+}
+.nav-brand { font-weight: 800; font-size: 21px; letter-spacing: -0.04em; color: var(--primary); margin-right: auto; display: flex; align-items: center; gap: 8px; line-height: 1; }
+.nav-brand img { width: 28px; height: 28px; flex-shrink: 0; }
+.nav-brand small { font-size: 9px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted-fg); display: none; }
+.nav-links { display: flex; gap: 2px; list-style: none; flex-shrink: 0; }
+.nav-links a { font-size: 16px; font-weight: 700; color: var(--foreground); padding: 6px 10px; border-radius: var(--radius); transition: background 0.15s; white-space: nowrap; }
+.nav-links a:hover { background: var(--muted); color: var(--foreground); }
+.btn-nav { background: var(--muted); color: var(--foreground); border: 1px solid var(--border); font-size: 16px; font-weight: 700; padding: 8px 18px; border-radius: var(--radius); transition: background 0.15s; }
+.btn-nav:hover { background: var(--border); }
+.hamburger { display: none; flex-direction: column; justify-content: center; gap: 5px; width: 36px; height: 36px; padding: 6px; border-radius: var(--radius); background: none; margin-left: 4px; }
+.hamburger span { display: block; width: 20px; height: 2px; background: var(--foreground); border-radius: 2px; transition: 0.2s; }
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* HEAD */
+.page-head { padding: 72px 0 0; }
+.crumb { display: flex; align-items: center; gap: 6px; font-size: 12.5px; font-weight: 600; color: var(--muted-fg); margin-bottom: 22px; }
+.sec-label { font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--primary); display: block; margin-bottom: 12px; }
+.page-head h1 { font-size: clamp(30px, 4.4vw, 52px); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; word-break: keep-all; max-width: 22ch; }
+.page-lead { font-size: 16px; line-height: 1.8; color: var(--muted-fg); max-width: 62ch; margin-top: 24px; word-break: keep-all; }
+.basis { display: inline-flex; align-items: center; gap: 7px; font-size: 12.5px; font-weight: 700; color: var(--accent-dark); background: var(--accent-light); border: 1px solid var(--accent-mid); padding: 6px 12px; border-radius: 999px; margin-top: 26px; }
+
+/* STATS */
+.stat-row { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 52px; border-top: 2px solid var(--foreground); border-bottom: 1px solid var(--border); }
+.stat { padding: 22px 24px 24px; }
+.stat + .stat { border-left: 1px solid var(--border); }
+.stat strong { display: block; font-size: clamp(28px, 3.4vw, 44px); font-weight: 800; letter-spacing: -0.03em; line-height: 1; color: var(--foreground); }
+.stat.hl strong { color: var(--primary); }
+.stat span { display: block; font-size: 12.5px; font-weight: 600; color: var(--muted-fg); margin-top: 9px; }
+
+/* CONTROLS */
+.controls { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 28px; padding: 32px 0 20px; }
+.ctl-group { display: flex; flex-direction: column; gap: 9px; }
+.ctl-label { font-size: 11px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: var(--muted-fg); }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { font-size: 13px; font-weight: 700; color: var(--muted-fg); background: var(--card); border: 1px solid var(--border); padding: 7px 14px; border-radius: 999px; transition: 0.15s; white-space: nowrap; }
+.chip:hover { border-color: var(--primary); color: var(--primary); }
+.chip.on { background: var(--primary); border-color: var(--primary); color: #fff; }
+.count { margin-left: auto; font-size: 13px; font-weight: 700; color: var(--muted-fg); padding-bottom: 8px; white-space: nowrap; }
+.count b { color: var(--foreground); }
+
+/* LIST */
+.list { border-top: 2px solid var(--foreground); padding-bottom: 8px; }
+.row { border-bottom: 1px solid var(--border); }
+.row-btn { display: grid; grid-template-columns: 74px minmax(0,1fr) 190px 168px 96px 24px; align-items: center; gap: 18px; width: 100%; background: none; text-align: left; padding: 20px 4px; transition: background 0.15s; }
+.row-btn:hover { background: var(--muted); }
+.row.open .row-btn { background: var(--accent-light); }
+.reg { font-size: 11.5px; font-weight: 800; letter-spacing: -0.01em; color: var(--primary); background: var(--accent-light); border: 1px solid var(--accent-mid); padding: 4px 0; border-radius: 4px; text-align: center; white-space: nowrap; }
+.row-main h3 { font-size: 15.5px; font-weight: 700; letter-spacing: -0.015em; line-height: 1.4; color: var(--foreground); word-break: keep-all; }
+.row-org { font-size: 12.5px; font-weight: 500; color: var(--muted-fg); margin-top: 5px; word-break: keep-all; }
+.cell-k { font-size: 10.5px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted-fg); display: block; margin-bottom: 4px; }
+.cell-v { font-size: 13px; font-weight: 600; line-height: 1.45; color: var(--foreground); word-break: keep-all; }
+.state { font-size: 11.5px; font-weight: 800; padding: 5px 0; border-radius: 4px; text-align: center; white-space: nowrap; }
+.state.a { background: var(--primary); color: #fff; }
+.state.b { background: var(--muted); color: var(--muted-fg); border: 1px solid var(--border); }
+.state.c { background: #fff; color: var(--muted-fg); border: 1px dashed var(--muted-fg); }
+.chev { color: var(--muted-fg); display: flex; justify-content: flex-end; transition: transform 0.2s; }
+.row.open .chev { transform: rotate(180deg); color: var(--primary); }
+.detail { display: none; padding: 4px 4px 30px; }
+.row.open .detail { display: block; }
+.dl { display: grid; grid-template-columns: 132px minmax(0,1fr); gap: 1px 22px; border-top: 1px solid var(--border); }
+.dl dt { font-size: 12px; font-weight: 700; color: var(--muted-fg); padding: 13px 0 0; }
+.dl dd { font-size: 13.5px; line-height: 1.75; color: var(--foreground); padding: 13px 0 0; word-break: keep-all; }
+.dl dd.dim { color: var(--muted-fg); }
+.src { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+.src a { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; color: var(--primary); background: var(--accent-light); border: 1px solid var(--accent-mid); padding: 6px 12px; border-radius: 999px; }
+.src a:hover { background: var(--accent-mid); color: var(--accent-dark); }
+.empty { padding: 64px 4px; font-size: 14px; color: var(--muted-fg); }
+
+/* NOTES */
+.notes { margin: 44px 0 76px; padding: 26px 28px; background: var(--muted); border-left: 3px solid var(--primary); border-radius: 0 var(--radius) var(--radius) 0; }
+.notes h4 { font-size: 13px; font-weight: 800; letter-spacing: -0.01em; margin-bottom: 12px; }
+.notes p { font-size: 12.5px; line-height: 1.85; color: var(--muted-fg); word-break: keep-all; }
+.notes p + p { margin-top: 7px; }
+
+/* CTA */
+.cta { border-top: 1px solid var(--border); background: var(--accent-light); padding: 56px 0; }
+.cta-inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px; }
+.cta h2 { font-size: clamp(20px, 2.4vw, 30px); font-weight: 800; letter-spacing: -0.025em; line-height: 1.3; word-break: keep-all; max-width: 30ch; }
+.cta p { font-size: 14px; line-height: 1.7; color: var(--muted-fg); margin-top: 10px; max-width: 46ch; word-break: keep-all; }
+.btn-primary { background: var(--primary); color: #fff; font-size: 14px; font-weight: 700; padding: 13px 26px; border-radius: var(--radius); box-shadow: var(--shadow-sm); white-space: nowrap; }
+.btn-primary:hover { background: var(--primary-hover); color: #fff; }
+
+/* FOOTER */
+footer { background: var(--primary-hover); border-top: 1px solid rgba(255,255,255,0.1); padding: 28px 0; }
+.footer-inner { display: flex; justify-content: flex-start; align-items: center; flex-wrap: wrap; gap: 10px 18px; font-size: 13px; color: rgba(255,255,255,0.85); }
+.footer-brand { font-weight: 800; font-size: 15px; letter-spacing: -0.03em; color: #fff; display: inline-flex; align-items: center; gap: 8px; }
+.footer-brand img { width: 22px; height: 22px; flex-shrink: 0; }
+footer a:hover { color: #fff; }
+
+@media (max-width: 1080px) {
+  .row-btn { grid-template-columns: 68px minmax(0,1fr) 168px 92px 24px; }
+  .cell-period { display: none; }
+}
+@media (max-width: 820px) {
+  .stat-row { grid-template-columns: repeat(2, 1fr); }
+  .stat:nth-child(3) { border-left: none; }
+  .stat:nth-child(n+3) { border-top: 1px solid var(--border); }
+  .row-btn { grid-template-columns: 62px minmax(0,1fr) 88px 20px; gap: 14px; }
+  .cell-limit { display: none; }
+  .dl { grid-template-columns: 1fr; gap: 0; }
+  .dl dt { padding: 16px 0 0; }
+  .dl dd { padding: 4px 0 0; }
+}
+@media (max-width: 640px) {
+  nav { gap: 12px; }
+  .nav-links { display: none; }
+  .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 58px; left: 0; right: 0; background: #fff; border-bottom: 1px solid var(--border); padding: 8px 20px 16px; gap: 2px; box-shadow: 0 8px 20px rgba(15,23,42,0.08); }
+  .hamburger { display: flex; }
+  .btn-nav { font-size: 13px; padding: 7px 14px; }
+  .page-head { padding-top: 44px; }
+  .controls { gap: 20px; }
+  .count { margin-left: 0; width: 100%; padding-bottom: 0; }
+  .row-btn { padding: 16px 2px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-brand"><img src="favicon.png" alt="">BEZLab<small>Blue Earth-Zeta Laboratory</small></a>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="index.html#process">서비스</a></li>
+    <li><a href="index.html#programs">정부지원사업</a></li>
+    <li><a href="index.html#team">팀</a></li>
+    <li><a href="index.html#contact">문의</a></li>
+  </ul>
+  <a href="index.html#contact" class="btn-nav">지원사업 찾기</a>
+  <button class="hamburger" id="hamburger" aria-label="메뉴"><span></span><span></span><span></span></button>
+</nav>
+
+<header class="page-head">
+  <div class="wrap">
+    <p class="crumb"><a href="index.html">홈</a><i data-lucide="chevron-right" style="width:13px;height:13px;"></i>지원사업 조사</p>
+    <span class="sec-label">Research</span>
+    <h1>그린리모델링·에너지절감 지원사업 조사 데이터베이스</h1>
+    <p class="page-lead">중앙부처·광역시도·기초지자체 공고문 원문을 직접 확인해 사업별 지원대상, 지원한도, 필수 공사조건, 접수 일정을 하나의 기준으로 정리하고 있습니다. 아래는 수도권 중심으로 정리한 조사 결과의 일부입니다.</p>
+    <span class="basis"><i data-lucide="calendar-check" style="width:14px;height:14px;"></i> 조사 기준일 2026. 9. 8</span>
+
+    <div class="stat-row">
+      <div class="stat"><strong id="s-total">24</strong><span>정리한 사업 수</span></div>
+      <div class="stat hl"><strong id="s-open">7</strong><span>접수 중 · 접수 가능</span></div>
+      <div class="stat"><strong id="s-closed">15</strong><span>접수 종료</span></div>
+      <div class="stat"><strong id="s-region">10</strong><span>조사 권역</span></div>
+    </div>
+  </div>
+</header>
+
+<section class="wrap">
+  <div class="controls">
+    <div class="ctl-group">
+      <span class="ctl-label">접수 상태</span>
+      <div class="chips" id="f-state">
+        <button class="chip on" data-v="all">전체</button>
+        <button class="chip" data-v="진행중">접수 중</button>
+        <button class="chip" data-v="종료">종료</button>
+        <button class="chip" data-v="확인불가">확인 불가</button>
+      </div>
+    </div>
+    <div class="ctl-group">
+      <span class="ctl-label">권역</span>
+      <div class="chips" id="f-region">
+        <button class="chip on" data-v="all">전체</button>
+        <button class="chip" data-v="중앙">중앙부처·전국</button>
+        <button class="chip" data-v="광역">광역시도</button>
+        <button class="chip" data-v="기초">기초지자체</button>
+      </div>
+    </div>
+    <p class="count"><b id="c-shown">24</b>건 표시</p>
+  </div>
+
+  <div class="list" id="list"></div>
+
+  <div class="notes">
+    <h4>조사 방법 및 유의사항</h4>
+    <p>모든 값은 각 사업의 공식 공고문·기관 홈페이지 원문을 확인해 작성했습니다. 원문에 명시되지 않은 항목은 "명시 없음" 또는 "확인 불가"로 표기했습니다.</p>
+    <p>시·군별 자부담 비율과 매칭 비율은 지자체마다 다를 수 있으므로, 신청 전 해당 지자체 공고문을 다시 확인해야 합니다.</p>
+    <p>접수 상태는 2026년 9월 8일 기준이며 예산 소진 등으로 조기 마감될 수 있습니다. 저소득층 에너지효율개선사업은 난방 부문만 접수 중이며 냉방 부문은 종료되었습니다.</p>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap cta-inner">
+    <div>
+      <h2>우리 건물에 맞는 사업이 어느 것인지 확인해 드립니다</h2>
+      <p>건물 정보를 남겨주시면 조사한 사업 중 해당 여부를 확인해 안내드립니다.</p>
+    </div>
+    <a href="index.html#contact" class="btn-primary">지원사업 찾기 →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <span class="footer-brand"><img src="favicon.png" alt="">BEZLab</span>
+      <span>베즈랩 주식회사 (BEZLab.Inc) · Blue Earth-Zeta Laboratory</span>
+      <span>© 2026 BEZLab.Inc · 경기도 수원시 영통구 광교로 107, 창업보육동 110-9호</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+var DATA = [
+  {reg:"전국", tier:"중앙", name:"2026년 민간건축물 그린리모델링 컨설팅 지원사업(제2차)", org:"국토교통부 녹색건축과 · 국토안전관리원 그린리모델링 창조센터", target:"준공 10년 이상 경과한 단독주택·비주거 건축물 소유주(공동주택 제외). 2026년 2차 300~500동 내외", limitShort:"컨설팅 비용 전액", periodShort:"예산 소진 시까지", limit:"컨설팅 비용 전액 (건축주 지원금 상한 미기재) / 수행 컨소시엄당 4~6억원", rate:"100% (무료 컨설팅)", works:"공사 항목 아님 — 현장진단, 시뮬레이션 기반 개선안·견적, 절감량·투자회수기간 분석, 이자지원사업 신청서류 지원", period:"2026. 7. 1(2차) ~ 예산 소진 시까지", contact:"이메일 gr_kalis@kalis.or.kr · 국토안전관리원 055-771-4749 / 4907 / 4883", status:"진행 가능성 있음 (조기 마감 가능, 콜센터 확인 필요)", state:"진행중", urls:["https://www.greenremodeling.or.kr/n1/board/boardView.asp?bid=notice&nSeq=5824","https://www.korea.kr/news/customizedNewsView.do?newsId=148964854"]},
+  {reg:"전국", tier:"중앙", name:"2026년 민간건축물 그린리모델링 이자지원 사업", org:"국토안전관리원 그린리모델링 창조센터 (국토부 공고 제2026-350호, 변경 제2026-876호)", target:"2016. 1. 1 이전 사용승인 민간건축물(단독·공동세대·비주거). 공시가 12억원 초과 고가주택 제외, 다주택자는 1채 한정, 취약계층 우대", limitShort:"최대 200억원 (비주거)", periodShort:"상시 접수", limit:"비주거 최대 200억원 / 단독주택 최대 1억원 / 공동주택 단위세대 최대 3천만원", rate:"이차보전 4.5%p(성능개선 20~30% 미만) ~ 5.5%p(30% 이상·사회배려계층). 카드 이용 시 4.5% 고정", works:"외벽단열, 고성능창호, 고효율기기(냉난방·보일러·LED 중 1건), 폐열회수환기장치 중 1개 이상 + 성능개선율 20% 이상", period:"상시 접수 (총예산 80억원 소진 시 종료)", contact:"등록 그린리모델링 사업자를 통해 신청 · greenremodeling.or.kr", status:"진행 중 (예산 소진 여부 확인 필요)", state:"진행중", urls:["https://www.greenremodeling.or.kr/n1/support/sup1000.asp"]},
+  {reg:"국가", tier:"중앙", name:"2026년도 공공건축물 그린리모델링 지원사업 2.0", org:"국토교통부 녹색건축과 · 국토안전관리원(위탁시행)", target:"공공건축물 28종(도서관·경로당·복지시설 등). 준공 10년 이상(2016. 1. 1 이전), 임차건축물은 잔여기간 5년 이상", limitShort:"국비 최대 70억원", periodShort:"2026. 4. 24 마감", limit:"3.3㎡당 200~560만원, 사업당 국비 최대 70억원 (서울·중앙·공공 50억원)", rate:"50%(서울·중앙·공공) / 70%(그 외 지자체)", works:"총사업비 대비 에너지성능개선 40% 이상, 기후위기적응 30% 이하, 추가지원 30% 이하 비율 요건", period:"2026. 4. 7 ~ 4. 24 (연 1회 공모)", contact:"greenremodeling.or.kr 공모 접수", status:"종료 (2026. 6. 3 전국 318동 선정 완료)", state:"종료", urls:["https://www.greenremodeling.or.kr/n1/business/bus1000.asp"]},
+  {reg:"경기도", tier:"광역", name:"경기도 주택 패시브 리모델링 지원사업", org:"경기도 건축정책과 · 13개 시·군 건축부서", target:"준공 10년 이상 단독·다세대·연립 소유자. 2026년 13개 시군 85세대(용인·고양·평택·파주·김포·하남·광명·이천·구리·여주·과천·가평·연천)", limitShort:"세대당 최대 1,000만원", periodShort:"시·군별 1월 공고", limit:"세대당 최대 1,000만원 (도비 50% + 시군비 50%)", rate:"순공사비의 90%(구리시 기준). 광명시는 자부담 50%로 안내되어 시군별로 다름", works:"고기밀 단열보강 또는 창호 교체 중 1개 이상 필수. 사전 컨설팅 및 사후 효과분석 수반", period:"시·군별 공고(통상 1월). 예) 구리시 2026. 1. 16 ~ 1. 30", contact:"해당 시·군 건축부서 방문접수. 예) 구리시청 건축과 031-550-2391", status:"종료 (1월 마감, 물량 85세대로 매우 제한적)", state:"종료", urls:["https://gnews.gg.go.kr/briefing/brief_gongbo_view.do?BS_CODE=s017&number=68930"]},
+  {reg:"경기도", tier:"광역", name:"경기도 햇살하우징", org:"경기도 주택정책과(사업주체) · 경기주택도시공사 GH(시행)", target:"경기도 거주 중위소득 50% 이하 가구(4인 월 3,048,887원). 집주인 동의 필수, 기수혜자 등 제외", limitShort:"가구당 500만원 이내", periodShort:"시·군별 연초 모집", limit:"가구당 500만원 이내 (인건비 등 포함)", rate:"명시 없음 (무상 시공, 국비·도비 분담률 원문 미기재)", works:"기밀성 창호·문, 벽체 단열보강, LED, 보일러·에어컨 교체 등 진단 후 항목 확정", period:"시·군별 연초 모집. 예) 안산 2026. 1. 16 ~ 2. 25", contact:"주소지 읍·면·동 행정복지센터 방문접수", status:"종료 (대부분 1~2월 마감)", state:"종료", urls:["https://housing.gg.go.kr/html/24302.do"]},
+  {reg:"전국", tier:"중앙", name:"2026년 저소득층 에너지효율개선사업 (난방·냉방)", org:"한국에너지재단 (기후에너지환경부 소관, 국고보조)", target:"국민기초생활수급가구, 차상위계층, 지자체 추천 복지사각지대 가구, 사회복지시설", limitShort:"가구당 최대 330만원", periodShort:"난방 상시 접수", limit:"난방 가구당 평균 243만원(최대 330만원) / 사회복지시설 1,100만원 / 냉방 평균 약 72만원(벽걸이 에어컨 1대)", rate:"국고보조 100%, 수혜가구 자부담 없음", works:"난방 — 벽체단열·창호교체·바닥공사, 보일러 교체 / 냉방 — 벽걸이 에어컨 설치", period:"냉방 2026. 3. 3 ~ 3. 27(마감) / 난방 2026. 3. 3 ~ 예산 소진 시까지 상시", contact:"주소지 읍·면·동 행정복지센터 방문 신청 · 콜센터 1670-7653", status:"난방 진행 가능성 있음(잔여예산 확인 필요), 냉방 종료", state:"진행중", urls:["https://min24.energy.or.kr/greenhome/contents/view004_02_01.do"]},
+  {reg:"전국", tier:"중앙", name:"한국에너지공단 에너지이용합리화자금 융자사업", org:"한국에너지공단 자금융자실 (산업통상자원부 공고)", target:"보일러·요로설비·폐열이용설비 등 설치자, ESCO 성과보증계약 사업자, 건물 소유자·세입자", limitShort:"최대 300억원 융자", periodShort:"매월 1~7일", limit:"동일 투자사업장당 최대 300억원 (생산시설·열수송시설은 50억원 이내)", rate:"소요자금의 70% 이내 (중소기업 90% 이내, ESCO투자·열수송개체사업 100% 이내)", works:"에너지진단 결과 절감효과 5% 이상(ESCO 투자사업), 지침 별표1 대상설비", period:"매월 1~7일 접수 (연중 상시)", contact:"한국에너지공단 자금융자실 052-920-0492~6", status:"상시 진행 중", state:"진행중", urls:["https://www.energy.or.kr/front/conts/105002001023000.do"]},
+  {reg:"서울시", tier:"광역", name:"2026년 건물에너지효율화(BRP) 융자지원사업 (건물부문)", org:"서울특별시 저탄소건물지원센터", target:"사용승인 15년 이상 경과한 서울 소재 건물(주거·비주거). 성능개선 공사를 계획 중이거나 진행 중인 건물", limitShort:"연 0.8% 장기저리 융자", periodShort:"2026. 11. 13까지", limit:"2026년 건물부문 총 50억원 규모. 신재생에너지 설비는 공사비 80% 이내", rate:"연 0.8% 장기저리 융자 (성능개선 공사비 100% 이내, 신재생 80% 이내)", works:"단열창호·단열덧창·내외벽 단열재, 고효율 냉온수기·냉동기·펌프 등 설치", period:"2026. 2. 2 ~ 11. 13", contact:"서울시 저탄소건물지원센터 02-2133-9700 · 온라인 신청 가능", status:"진행 중 (예산 소진 시 조기 마감)", state:"진행중", urls:["https://www.esco.or.kr/notice/notice?bc_seq=1&method=view&b_seq=6981"]},
+  {reg:"서울시", tier:"광역", name:"2026년 새빛주택 지원사업", org:"서울시 기후환경본부 친환경건물과 · 서울시 저탄소건물지원센터", target:"서울 소재 사용승인 15년 이상 + 공시가격 3억원 이하 주택 소유자 또는 소유자 위임 세입자", limitShort:"최대 500만원 (단독)", periodShort:"2026. 9. 30까지", limit:"단독(다중·다가구) 최대 500만원 / 공동(다세대·연립·아파트) 최대 300만원. 2026년 예산 15억원", rate:"순공사비의 70% 이내 (기초수급자·차상위는 90%까지)", works:"저효율 창호를 단열창호(효율 1~3등급)로 전량 교체, 또는 형광등·백열등을 고효율 LED로 전량 교체", period:"2026. 2. 9 ~ 9. 30 (보조금 심의 매월 1회, 마지막 10. 21)", contact:"온라인 brp.eseoul.go.kr · 서울시 저탄소건물지원센터(중구 덕수궁길 15)", status:"접수 중 (2026. 9. 30까지)", state:"진행중", urls:["https://news.seoul.go.kr/env/archives/567370"]},
+  {reg:"국가", tier:"중앙", name:"노후 공공임대주택 그린리모델링 사업", org:"국토교통부(그린뉴딜) · 한국토지주택공사 LH 시행", target:"건령 15년 이상 노후 영구임대(19만호)·매입임대(3.5만호). 입주민 개별신청 불가, 단지 단위 시행", limitShort:"단지 단위 발주형", periodShort:"2026년 발주 미확인", limit:"국비 + LH·지자체 사업비. 2021년 4만호 약 5,900억원, 2024년 108단지 8,910호 발주", rate:"명시 없음 (입주민 자부담 없음, 발주형 사업)", works:"고성능 단열재·창호, LED, 콘덴싱보일러, 복합환기시스템, 세대통합 리모델링 등", period:"LH 연간계획에 따라 연초(1~3월) 공사 발주. 2026년 신규 발주 여부 확인 불가", contact:"개별 신청 접수처 없음 · LH콜센터 1600-1004", status:"확인 불가 (2026년 신규 발주 미확인)", state:"확인불가", urls:["https://www.molit.go.kr/newdeal/sub/sub_2_1.jsp"]},
+  {reg:"수원시", tier:"기초", name:"2026년 새빛하우스 집수리 지원사업", org:"수원도시재단 주거복지센터 (수원시 저층 노후주택 집수리 지원 조례 제7조)", target:"집수리지원구역 내 사용승인 20년 이상 단독·다가구·다세대·연립·상가주택 소유자. 소득기준 없음", limitShort:"최대 1,200만원 (단독)", periodShort:"2026. 2. 27 마감", limit:"단독주택 최대 1,200만원 / 다세대·연립 개별세대·상가 최대 500만원 / 현관 단열방화문 최대 600만원 / 공용부 1,400~2,000만원", rate:"총공사비의 90% 이내 (우선선정 가구는 100%)", works:"방수·단열·도장·창호·금속·난방설비·담장 등. 재단 등록 시공업체를 통해 시공 의무", period:"2026. 1. 5 ~ 2. 27", contact:"수원도시재단 주거복지센터", status:"종료", state:"종료", urls:["https://www.sscf2016.or.kr/entry_view.do?mn_key=02020000&srch_page=1&ACV_CNT_BOARD_NUM=202601051248190971"]},
+  {reg:"수원시", tier:"기초", name:"2026년 주거취약계층 클린서비스 사업", org:"수원도시재단", target:"수원시 실거주, 중위소득 75% 이하(4인 월 4,871,054원). 저장강박 의심·독거노인·장애인 가구", limitShort:"가구당 200만원 내", periodShort:"예산 소진 시까지", limit:"가구당 200만원 내 (10가구 내외). 재단 상시안내는 100만원으로 다르게 표기", rate:"명시 없음", works:"청소·정리수납·방역 등 (시설공사 아님)", period:"2026. 6. 8 ~ 예산 소진 시까지 (상시)", contact:"수원도시재단 · suzip.or.kr", status:"진행 중 (예산 소진 시 종료)", state:"진행중", urls:["https://www.suzip.or.kr/hw/clean.do"]},
+  {reg:"수원시", tier:"기초", name:"2026년 주거취약계층 주거환경개선사업(집수리) 2차", org:"수원도시재단", target:"기초수급·차상위, 최저주거기준 미달 또는 지하·반지하 거주, 재난피해가구 등", limitShort:"가구당 300만원 내외", periodShort:"2026. 9. 11 마감", limit:"가구당 300만원 내외 (5가구 내외)", rate:"명시 없음", works:"주거환경개선 집수리 공사", period:"2026. 9. 7 ~ 9. 11", contact:"수원도시재단", status:"종료", state:"종료", urls:["https://sscf2016.or.kr/entry_view.do?mn_key=&srch_page=2&ACV_CNT_BOARD_NUM=202609011143510020"]},
+  {reg:"수원시", tier:"기초", name:"2026년 수원시 녹색건축물 조성 지원사업", org:"수원시 건축과", target:"사용승인 15년 이상 단독·다가구·상가주택(660㎡ 이하), 150세대 이하 다세대·연립 소유자", limitShort:"최대 1,000만원", periodShort:"2026. 2. 27 마감", limit:"최대 1,000만원. 수원화성 역사문화환경보존지역·주거환경개선사업구역·도시재생활성화지역 내 주택은 최대 2,000만원", rate:"공사원가의 50% 범위", works:"내·외부 단열공사, 이중창 교체, LED, 온수난방패널, 친환경 콘덴싱보일러(1종) 교체, 단열 현관문·중문", period:"2026. 2. 2 ~ 2. 27 (등기우편 소인 유효)", contact:"수원시청 건축과 방문·등기우편", status:"종료", state:"종료", urls:["https://www.metroseoul.co.kr/article/20260202500037"]},
+  {reg:"김포시", tier:"기초", name:"2026년 햇살하우징 사업", org:"김포시 주택과 주거복지팀", target:"노후주택 거주 중위소득 50% 이하 가구(4인 3,247,369원). 2026년 총 6가구(예비 1가구 포함)", limitShort:"가구당 최대 500만원", periodShort:"2026. 2. 20 마감", limit:"가구당 최대 500만원 한도", rate:"명시 없음", works:"창호·문 교체, 벽체 단열보강, 고효율 보일러 교체, 냉난방기 교체, LED 조명 교체", period:"2026. 1. 20 ~ 2. 20", contact:"김포시 주택과 031-980-2417", status:"종료", state:"종료", urls:["https://www.gimpo.go.kr/news/selectBbsNttView.do?bbsNo=466&key=9377&nttNo=960657"]},
+  {reg:"김포시", tier:"기초", name:"가정용 친환경(콘덴싱) 보일러 설치 지원 사업", org:"김포시 기후에너지과 미세먼지대응팀", target:"수급권자·차상위·차상위 자활대상·사회복지시설·중위소득 100% 이하 다자녀(2자녀 이상) 가구", limitShort:"가구당 60만원 정액", periodShort:"연중 상시", limit:"가구당 60만원 정액 (2025년 물량 128대, 2026년 물량 미확인)", rate:"명시 없음 (정액 지원)", works:"환경표지 인증 콘덴싱 가스보일러(70kW 이하). 도시가스 미공급지역은 인증 2종 LPG보일러 교체 시 지원", period:"연중 상시 (예산 소진 시까지)", contact:"김포시 기후에너지과 031-980-5374", status:"진행 가능성 높음 (2026년 물량 확인 필요)", state:"진행중", urls:["https://www.gimpo.go.kr/news/selectBbsNttView.do?key=9377&bbsNo=466&nttNo=904793"]},
+  {reg:"용인시", tier:"기초", name:"2026년 우리집 새단장 지원사업", org:"용인특례시 건축과", target:"사용승인 15년 이상 단독·공동주택 전유부분(아파트 제외) 소유자. 기초수급·차상위·한부모 우선", limitShort:"최대 1,000만원", periodShort:"2026. 2. 20 마감", limit:"최대 1,000만원", rate:"순공사비(부가세 제외)의 50% 이내", works:"고성능 창호·문, 고기밀 단열보강, 고효율 조명·보일러, 열회수형 환기장치 등. 선(先)계약 후 신청", period:"2026. 1. 26 ~ 2. 20", contact:"용인시청 건축과 방문접수 031-6193-2398 / 3247", status:"종료", state:"종료", urls:["https://www.welfarehello.com/community/hometownNews/a492c904-92dc-496c-8711-73786ae2c8ba"]},
+  {reg:"성남시", tier:"기초", name:"2026년 햇살하우징 사업", org:"성남시 주택과 주거복지센터", target:"중위소득 50% 이하 저소득 가구. 2026년 10가구 모집", limitShort:"가구당 최대 500만원", periodShort:"2026. 2. 20 마감", limit:"가구당 최대 500만원", rate:"명시 없음", works:"기밀성 창호·문 교체, 벽체 내단열 보강, 냉난방기 설치·교체, LED 조명 교체", period:"2026. 2. 20까지", contact:"주소지 동 행정복지센터 · 031-729-8814", status:"종료", state:"종료", urls:["https://www.ggeco.co.kr/news/article.html?no=319597"]},
+  {reg:"성남시", tier:"기초", name:"2026년 어르신 안전하우징 사업", org:"성남시 주택과 주거복지센터", target:"65세 이상 기초연금 수급자. 2026년 21가구", limitShort:"가구당 최대 500만원", periodShort:"2026. 2. 20 마감", limit:"가구당 최대 500만원", rate:"명시 없음", works:"기밀성 창호·문 교체, 벽체 내단열 보강, 냉난방기 설치·교체, LED 조명 교체", period:"2026. 2. 20까지", contact:"주소지 동 행정복지센터", status:"종료", state:"종료", urls:["https://m.joongdo.co.kr/view.php?key=20260126010008379"]},
+  {reg:"화성시", tier:"기초", name:"2026년 햇살하우징 사업 (경기도 위탁, GH 시행)", org:"경기주택도시공사 GH 시행 · 화성시 읍·면·동 접수", target:"기준 중위소득 50% 이하 자가·임차 가구. 실거주 세대", limitShort:"가구당 500만원 이하", periodShort:"2026. 2. 20 마감", limit:"가구당 500만원 이하 (재료비·노무비·경비 포함)", rate:"명시 없음 (전액 지원 방식)", works:"기밀성 창호·문, 벽체단열, 보일러 교체, LED, 고효율 냉난방기 (현지조사 후 항목 확정)", period:"2026. 1. 26 ~ 2. 20", contact:"화성시 읍·면·동 행정복지센터", status:"종료", state:"종료", urls:["https://www.hscity.go.kr/manse/user/bbs/BD_selectBbs.do?q_bbsCode=1048&q_bbscttSn=20260121152716502"]},
+  {reg:"화성시", tier:"기초", name:"화성시 자체 녹색건축물 조성 지원사업", org:"화성시 (담당 부서 미확인)", target:"확인 불가 (2018년 공고 기준 소유자 대상)", limitShort:"확인 불가", periodShort:"공고 원문 미확인", limit:"2026년 총사업비 3억원(시의회 확인). 2018년 기준 최대 1,000만원", rate:"2018년 기준 공사비 50% (2026년 원문 미확인)", works:"확인 불가", period:"2026년 공고 원문 확인 불가", contact:"확인 불가", status:"확인 불가 (공고 원문 미공개)", state:"확인불가", urls:["https://council.hscity.go.kr/cnts/mnt/mntsViewer.php?mode=spkr1&schSn=7566&spkrCd=MBR9010"]},
+  {reg:"안양시", tier:"기초", name:"2026년 녹색건축물 조성 보조금 지원사업", org:"안양시 건축과 건축행정팀", target:"사용승인 15년 이상 주택 소유자. 소득기준 없음. 참여자·시공업체 지방세 체납 없어야 함", limitShort:"가구당 최대 500만원", periodShort:"2026. 1. 30 마감", limit:"가구당 최대 500만원", rate:"공사비의 50~90% (창호·조명 교체비 최대 90%)", works:"창호 교체(에너지소비효율 2등급 이상), LED 조명 교체. 시공업체는 안양 소재 업체로 한정", period:"2026. 1. 12 ~ 1. 30", contact:"안양시청 5층 건축과 서면 제출 · 031-8045-5678", status:"종료", state:"종료", urls:["https://www.anyang.go.kr/main/emwsWebView.do?key=4101&regiNo=28332"]},
+  {reg:"고양시", tier:"기초", name:"2026년 주택 패시브 리모델링 지원사업", org:"고양특례시 건축정책과", target:"사용승인 15년 이상 단독·다가구주택 및 19세대 이하 공동주택", limitShort:"최대 1,000만원", periodShort:"2026. 2. 12 마감", limit:"최대 1,000만원. 2026년 총사업비 6,000만원(도비 3,000 + 시비 3,000), 약 6가구 규모", rate:"공사비의 50% 범위 내", works:"고성능 창호 교체, 건물 내·외부 단열공사, 전력저감 우수제품(LED) 교체. 녹색건축물 조성위원회 심의", period:"2026. 1. 23 ~ 2. 12", contact:"고양시 건축정책과 031-8075-2808", status:"종료", state:"종료", urls:["https://www.gybknews.com/8845"]},
+  {reg:"고양시", tier:"기초", name:"2026년도 소규모 노후주택(공동주택) 집수리 지원사업", org:"고양특례시 건축정책과", target:"사용승인 15년 이상, 30세대 미만 공동주택(아파트·연립·다세대) 공용부. 의무관리대상 제외", limitShort:"최대 1,600만원 이내", periodShort:"2026. 3. 13 마감", limit:"최대 1,600만원 이내", rate:"공사비의 90%까지", works:"공용부 집수리공사, 경관개선공사, 부대시설 유지보수", period:"2026. 2. 6 ~ 3. 13", contact:"고양시 건축정책과 031-8075-3133", status:"종료", state:"종료", urls:["https://www.goyang.go.kr/www/user/bbs/BD_selectBbs.do?q_bbsCode=1030&q_bbscttSn=20260205102832053"]}
+];
+
+var STATE_CLS = { '진행중': 'a', '종료': 'b', '확인불가': 'c' };
+var STATE_TXT = { '진행중': '접수 중', '종료': '종료', '확인불가': '확인 불가' };
+var filter = { state: 'all', region: 'all' };
+
+function esc(s) {
+  return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) {
+    return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+  });
+}
+
+function host(u) {
+  try { return u.replace(/^https?:\/\//, '').split('/')[0].replace(/^www\./, ''); }
+  catch (e) { return '공고 원문'; }
+}
+
+function dim(v) { return /확인 ?불가|명시 없음/.test(v) ? ' class="dim"' : ''; }
+
+function rowHTML(d, i) {
+  var srcs = d.urls.map(function (u) {
+    return '<a href="' + esc(u) + '" target="_blank" rel="noopener">' +
+      '<i data-lucide="external-link" style="width:12px;height:12px;"></i>' + esc(host(u)) + '</a>';
+  }).join('');
+  return '<div class="row" data-i="' + i + '">' +
+    '<button class="row-btn" type="button">' +
+      '<span class="reg">' + esc(d.reg) + '</span>' +
+      '<span class="row-main"><h3>' + esc(d.name) + '</h3><span class="row-org">' + esc(d.org) + '</span></span>' +
+      '<span class="cell-limit"><span class="cell-k">지원한도</span><span class="cell-v">' + esc(d.limitShort) + '</span></span>' +
+      '<span class="cell-period"><span class="cell-k">신청시기</span><span class="cell-v">' + esc(d.periodShort) + '</span></span>' +
+      '<span class="state ' + STATE_CLS[d.state] + '">' + STATE_TXT[d.state] + '</span>' +
+      '<span class="chev"><i data-lucide="chevron-down" style="width:18px;height:18px;"></i></span>' +
+    '</button>' +
+    '<div class="detail"><dl class="dl">' +
+      '<dt>지원대상</dt><dd' + dim(d.target) + '>' + esc(d.target) + '</dd>' +
+      '<dt>지원한도</dt><dd' + dim(d.limit) + '>' + esc(d.limit) + '</dd>' +
+      '<dt>지원율</dt><dd' + dim(d.rate) + '>' + esc(d.rate) + '</dd>' +
+      '<dt>필수 공사조건</dt><dd' + dim(d.works) + '>' + esc(d.works) + '</dd>' +
+      '<dt>신청시기</dt><dd' + dim(d.period) + '>' + esc(d.period) + '</dd>' +
+      '<dt>접수처</dt><dd' + dim(d.contact) + '>' + esc(d.contact) + '</dd>' +
+      '<dt>접수상태</dt><dd' + dim(d.status) + '>' + esc(d.status) + '</dd>' +
+    '</dl><div class="src">' + srcs + '</div></div>' +
+  '</div>';
+}
+
+function render() {
+  var rows = DATA.filter(function (d) {
+    return (filter.state === 'all' || d.state === filter.state) &&
+           (filter.region === 'all' || d.tier === filter.region);
+  });
+  var list = document.getElementById('list');
+  list.innerHTML = rows.length
+    ? rows.map(rowHTML).join('')
+    : '<p class="empty">해당 조건의 사업이 없습니다.</p>';
+  document.getElementById('c-shown').textContent = rows.length;
+  if (window.lucide) lucide.createIcons();
+}
+
+document.getElementById('list').addEventListener('click', function (e) {
+  var btn = e.target.closest('.row-btn');
+  if (btn) btn.parentNode.classList.toggle('open');
+});
+
+['f-state', 'f-region'].forEach(function (id) {
+  document.getElementById(id).addEventListener('click', function (e) {
+    var chip = e.target.closest('.chip');
+    if (!chip) return;
+    this.querySelectorAll('.chip').forEach(function (c) { c.classList.remove('on'); });
+    chip.classList.add('on');
+    filter[id === 'f-state' ? 'state' : 'region'] = chip.dataset.v;
+    render();
+  });
+});
+
+document.getElementById('hamburger').addEventListener('click', function () {
+  document.getElementById('nav-links').classList.toggle('open');
+  this.classList.toggle('open');
+});
+
+(function stats() {
+  var by = function (s) { return DATA.filter(function (d) { return d.state === s; }).length; };
+  document.getElementById('s-total').textContent = DATA.length;
+  document.getElementById('s-open').textContent = by('진행중');
+  document.getElementById('s-closed').textContent = by('종료');
+  var regs = {};
+  DATA.forEach(function (d) { regs[d.reg] = 1; });
+  document.getElementById('s-region').textContent = Object.keys(regs).length;
+})();
+
+render();
+if (window.lucide) lucide.createIcons();
+</script>
+</body>
+</html>
