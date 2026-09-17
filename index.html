@@ -282,6 +282,9 @@ button { font-family: var(--font); cursor: pointer; border: none; }
 .program-card.accent .region-tag { background: rgba(255,255,255,0.14); color: rgba(255,255,255,0.85); border-color: rgba(255,255,255,0.2); }
 .program-card.accent .program-deadline { color: rgba(255,255,255,0.7); }
 
+.pdf-card { text-decoration: none; cursor: pointer; }
+.pdf-card:hover .program-org, .pdf-card:hover h3 { color: var(--primary); }
+
 .official-tag { display: inline-flex; align-items: center; gap: 5px; border: 1px solid var(--accent-mid); padding: 3px 10px; font-size: 11px; font-weight: 600; color: var(--accent-dark); border-radius: 999px; margin-left: 10px; background: var(--accent-light); vertical-align: middle; }
 .official-tag::before { content: ""; width: 6px; height: 6px; background: var(--primary); border-radius: 50%; }
 .gov-info-box { background: var(--accent-light); border: 1px solid var(--accent-mid); border-left: 4px solid var(--primary); padding: 18px 22px; margin-top: 28px; margin-bottom: 40px; border-radius: 0 var(--radius) var(--radius) 0; }
@@ -773,6 +776,19 @@ footer { background: var(--primary-hover); border-top: 1px solid rgba(255,255,25
           <span class="program-deadline"><i data-lucide="calendar" style="width:13px;height:13px;"></i> 연 1회 공고</span>
         </div>
       </div>
+    </div>
+    <div class="program-grid" style="margin-top:16px;">
+      <a class="program-card fade-up pdf-card" href="assets/greenremodel-guideline-2026.pdf" target="_blank" rel="noopener">
+        <div class="program-head">
+          <p class="program-org">국토교통부 · 그린리모델링창조센터</p>
+          <span class="region-tag">전국</span>
+        </div>
+        <h3>공공건축물 그린리모델링 2.0 지원사업 가이드라인</h3>
+        <p>2026년 지원사업 신청 자격, 절차, 평가 기준을 담은 공식 가이드라인 문서입니다.</p>
+        <div class="program-foot">
+          <span class="badge">PDF 자료</span>
+        </div>
+      </a>
     </div>
   </div>
 </section>
