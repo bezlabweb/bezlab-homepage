@@ -283,6 +283,9 @@ button { font-family: var(--font); cursor: pointer; border: none; }
 .program-card.accent .program-deadline { color: rgba(255,255,255,0.7); }
 
 .pdf-card { text-decoration: none; cursor: pointer; }
+.img-thumb { flex: 1; min-height: 120px; position: relative; margin: -24px; overflow: hidden; border-radius: var(--radius-lg); }
+.img-thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; transition: transform .3s; }
+.pdf-card:hover .img-thumb img { transform: scale(1.03); }
 .pdf-card:hover .program-org, .pdf-card:hover h3 { color: var(--primary); }
 
 .official-tag { display: inline-flex; align-items: center; gap: 5px; border: 1px solid var(--accent-mid); padding: 3px 10px; font-size: 11px; font-weight: 600; color: var(--accent-dark); border-radius: 999px; margin-left: 10px; background: var(--accent-light); vertical-align: middle; }
@@ -799,6 +802,9 @@ footer { background: var(--primary-hover); border-top: 1px solid rgba(255,255,25
         <div class="program-foot">
           <span class="badge">PDF 자료</span>
         </div>
+      </a>
+      <a class="program-card fade-up pdf-card" href="assets/teheran-remodeling-incentive.png" target="_blank" rel="noopener">
+        <div class="img-thumb"><img src="assets/teheran-remodeling-incentive.png" alt="테헤란로 리모델링 활성화구역 인센티브 및 완화요건 요약" loading="lazy"></div>
       </a>
     </div>
   </div>
