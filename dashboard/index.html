@@ -27,8 +27,8 @@
 .bez-nav-links { display: flex; gap: 2px; list-style: none; margin: 0; padding: 0; flex-shrink: 0; }
 .bez-nav-links a { font-size: 16px; font-weight: 700; color: #0f172a; padding: 6px 10px; border-radius: 8px; transition: background 0.15s, color 0.15s; text-decoration: none; white-space: nowrap; }
 .bez-nav-links a:hover { background: #f1f5f9; color: #0f172a; }
-.bez-btn-nav { background: #0e5fa3; color: #fff; font-size: 16px; font-weight: 700; padding: 8px 18px; border-radius: 8px; border: none; cursor: pointer; font-family: 'Archivo', system-ui, sans-serif; text-decoration: none; }
-.bez-btn-nav:hover { background: #0c4f8a; }
+.bez-btn-nav { background: #f1f5f9; color: #0f172a; font-size: 16px; font-weight: 700; padding: 8px 18px; border-radius: 8px; border: 1px solid #e2e8f0; box-shadow: 0 1px 2px rgba(0,0,0,0.05); cursor: pointer; font-family: 'Archivo', system-ui, sans-serif; text-decoration: none; }
+.bez-btn-nav:hover { background: #e2e8f0; }
 .bez-hamburger { display: none; flex-direction: column; justify-content: center; gap: 5px; width: 36px; height: 36px; padding: 6px; cursor: pointer; border-radius: 8px; background: none; border: none; margin-left: 4px; }
 .bez-hamburger span { display: block; width: 20px; height: 2px; background: #0f172a; border-radius: 2px; transition: 0.2s; }
 .bez-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
@@ -55,11 +55,11 @@ body { overflow: visible; }
   <a href="../index.html" class="bez-nav-brand"><img src="../favicon.png" alt="">BEZLab<small>Blue Earth-Zeta Laboratory</small></a>
   <ul class="bez-nav-links" id="bez-nav-links">
     <li><a href="../index.html#process">서비스</a></li>
-    <li><a href="../index.html#programs">지원사업</a></li>
+    <li><a href="../index.html#programs">정부지원사업</a></li>
     <li><a href="../index.html#team">팀</a></li>
     <li><a href="../index.html#contact">문의</a></li>
   </ul>
-  <a href="../index.html#contact" class="bez-btn-nav">지원사업 찾기</a>
+  <a href="https://bezlab-green.vercel.app/" class="bez-btn-nav" target="_blank" rel="noopener">지원사업 찾기</a>
   <button class="bez-hamburger" id="bez-hamburger" aria-label="메뉴">
     <span></span><span></span><span></span>
   </button>
