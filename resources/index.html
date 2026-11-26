@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="베즈랩 자료실 — 그린리모델링 기술자료, 지원사업 안내 자료, 인포그래픽을 모아 제공합니다.">
+<title>자료실 — 베즈랩 주식회사</title>
+<link rel="icon" type="image/png" href="../favicon.png">
+<link rel="apple-touch-icon" href="../favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-brand"><img src="../favicon.png" alt="">BEZLab<small>Blue Earth-Zeta Laboratory</small></a>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="../index.html#process">서비스</a></li>
+    <li><a href="../index.html#programs">정부지원사업</a></li>
+    <li><a href="./" class="on">자료실</a></li>
+    <li><a href="../index.html#team">팀</a></li>
+    <li><a href="../index.html#contact">문의</a></li>
+  </ul>
+  <a href="https://bezlab-green.vercel.app/" class="btn-nav" target="_blank" rel="noopener">지원사업 찾기</a>
+  <button class="hamburger" id="hamburger" aria-label="메뉴"><span></span><span></span><span></span></button>
+</nav>
+
+<header class="page-head">
+  <div class="wrap">
+    <p class="crumb"><a href="../index.html">홈</a><span class="sep">›</span>자료실</p>
+    <span class="sec-label">Resources</span>
+    <h1>자료실</h1>
+    <p class="page-lead">그린리모델링 기술, 정부지원사업, 건물 에너지 효율화에 관한 자료를 모았습니다. 제목을 누르면 자세한 설명을, 다운로드 버튼을 누르면 원본 파일을 받을 수 있습니다.</p>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="controls">
+    <div class="chips" id="tabs"><button class="chip on" data-v="all">전체</button></div>
+    <label class="search">
+      <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input type="search" id="q" placeholder="자료 제목·내용 검색" aria-label="자료 검색">
+    </label>
+  </div>
+
+  <div class="board">
+    <div class="board-head">
+      <span class="c-no">번호</span><span>분류</span><span>제목</span><span class="c-date">등록일</span><span class="c-act">보기 · 다운로드</span>
+    </div>
+    <div id="list"><p class="empty">자료를 불러오는 중입니다…</p></div>
+  </div>
+  <p class="count">총 <b id="c-shown">0</b>건</p>
+</main>
+
+<section class="cta">
+  <div class="wrap cta-inner">
+    <div>
+      <h2>우리 건물에 맞는 그린리모델링 방법이 궁금하신가요?</h2>
+      <p>건물 정보를 남겨주시면 적용 가능한 기술과 지원사업을 함께 검토해 안내드립니다.</p>
+    </div>
+    <a href="../index.html#contact" class="btn-primary">상담 신청하기 →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <span class="footer-brand"><img src="../favicon.png" alt="">BEZLab</span>
+      <span>베즈랩 주식회사 (BEZLab.Inc) · Blue Earth-Zeta Laboratory</span>
+      <span>© 2026 BEZLab.Inc · 경기도 수원시 영통구 광교로 107, 창업보육동 110-9호</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+var ITEMS = [];
+var state = { cat: 'all', q: '' };
+
+var ICON_VIEW = '<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>';
+var ICON_DOWN = '<svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11"/><path d="m7 10 5 5 5-5"/><path d="M5 20h14"/></svg>';
+
+function esc(s) {
+  return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) {
+    return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+  });
+}
+function fmtDate(d) {
+  var m = /^(\d{4})-(\d{1,2})-(\d{1,2})/.exec(d || '');
+  return m ? m[1] + '. ' + Number(m[2]) + '. ' + Number(m[3]) : esc(d);
+}
+function fileName(p) { return (p || '').split('/').pop(); }
+
+function rowHTML(d) {
+  var view = d.page || d.file;
+  var title = view ? '<a href="' + esc(view) + '">' + esc(d.title) + '</a>' : esc(d.title);
+  var acts = '';
+  if (view) acts += '<a class="btn-s" href="' + esc(view) + '">' + ICON_VIEW + '보기</a>';
+  if (d.file) acts += '<a class="btn-s pri" href="' + esc(d.file) + '" download="' + esc(fileName(d.file)) + '">' + ICON_DOWN + '다운로드</a>';
+  return '<div class="item">' +
+    '<span class="c-no">' + d._no + '</span>' +
+    '<span class="cat">' + esc(d.category || '기타') + '</span>' +
+    '<div class="c-main"><h3>' + title + '</h3>' + (d.summary ? '<p class="sum">' + esc(d.summary) + '</p>' : '') + '</div>' +
+    '<span class="c-date">' + fmtDate(d.date) + '</span>' +
+    '<div class="c-act">' + acts + '</div>' +
+  '</div>';
+}
+
+function render() {
+  var q = state.q.trim().toLowerCase();
+  var rows = ITEMS.filter(function (d) {
+    if (state.cat !== 'all' && (d.category || '기타') !== state.cat) return false;
+    if (!q) return true;
+    return [d.title, d.summary, d.category].join(' ').toLowerCase().indexOf(q) !== -1;
+  });
+  document.getElementById('list').innerHTML = rows.length
+    ? rows.map(rowHTML).join('')
+    : '<p class="empty">' + (ITEMS.length ? '검색 결과가 없습니다.' : '등록된 자료가 없습니다.') + '</p>';
+  document.getElementById('c-shown').textContent = rows.length;
+}
+
+function buildTabs() {
+  var cats = [];
+  ITEMS.forEach(function (d) {
+    var c = d.category || '기타';
+    if (cats.indexOf(c) === -1) cats.push(c);
+  });
+  document.getElementById('tabs').innerHTML = '<button class="chip on" data-v="all">전체</button>' +
+    cats.map(function (c) { return '<button class="chip" data-v="' + esc(c) + '">' + esc(c) + '</button>'; }).join('');
+}
+
+document.getElementById('tabs').addEventListener('click', function (e) {
+  var chip = e.target.closest('.chip');
+  if (!chip) return;
+  this.querySelectorAll('.chip').forEach(function (c) { c.classList.remove('on'); });
+  chip.classList.add('on');
+  state.cat = chip.dataset.v;
+  render();
+});
+document.getElementById('q').addEventListener('input', function () {
+  state.q = this.value;
+  render();
+});
+document.getElementById('hamburger').addEventListener('click', function () {
+  document.getElementById('nav-links').classList.toggle('open');
+  this.classList.toggle('open');
+});
+
+// 자료 목록은 list.json 한 곳에서 관리합니다. 최신 등록일이 위로 옵니다.
+fetch('list.json', { cache: 'no-cache' })
+  .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+  .then(function (data) {
+    ITEMS = (Array.isArray(data) ? data : []).filter(function (d) { return d && d.title; });
+    ITEMS.sort(function (a, b) { return String(b.date || '').localeCompare(String(a.date || '')); });
+    ITEMS.forEach(function (d, i) { d._no = ITEMS.length - i; });
+    buildTabs();
+    render();
+  })
+  .catch(function () {
+    document.getElementById('list').innerHTML = '<p class="empty">자료 목록을 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.</p>';
+  });
+</script>
+</body>
+</html>

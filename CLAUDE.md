@@ -6,10 +6,11 @@ GitHub Pages 정적 사이트. 업로드 대상은 아래 전부.
 - `favicon.png` — 파비콘 + 상단 네비게이션 + 푸터 로고 (이 파일만 교체하면 3곳 동시 반영)
 - `assets/report-p1.png`, `assets/report-p2.png` — 분석 리포트 예시 이미지
 - `dashboard/` — 전국 노후 건축물 현황 (index.html, style.css, script.js, data.js, data.json)
+- `resources/` — 자료실 (index.html 목록, style.css 공통, list.json 목록 데이터, files/ 실제 파일, heatpump.html 등 상세 페이지, README.md 자료 추가 방법). 목록은 `list.json` 한 곳에서만 관리.
 
 ## 지켜야 할 것
 - `http://` 절대 금지 (SVG의 `xmlns`는 예외). 혼합 콘텐츠 경고가 발생함.
-- 공통 요소(상단 네비게이션, 푸터, 버튼 문구)는 `index.html`과 `dashboard/index.html` **양쪽 모두** 수정.
+- 공통 요소(상단 네비게이션, 푸터, 버튼 문구)는 `index.html`, `research.html`, `dashboard/index.html`, `resources/*.html` **모두** 수정.
 - 한글 낱말 중간 줄바꿈 방지: 제목·본문에 `word-break: keep-all`.
 - 모바일/태블릿 폭에서 가로 스크롤 발생 여부 확인. `.quick-item`에 `white-space: nowrap`이 있어 칸 수를 줄이면 반드시 중간 브레이크포인트(820px, 640px)를 함께 조정.
 - 실적 수치를 임의로 만들지 않는다. 매칭 완료 건수·지원금·승인율은 실제 실적이 생길 때까지 넣지 않음.
